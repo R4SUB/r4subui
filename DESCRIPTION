@@ -1,0 +1,39 @@
+Package: r4subui
+Title: Interactive Dashboard for Clinical Submission Readiness
+Version: 0.1.0
+Authors@R:
+    person("Pawan Rama", "Mali", , "prm@outlook.in", role = c("aut", "cre"))
+Description: Provides an interactive Shiny dashboard for the R4SUB ecosystem.
+    Visualizes evidence tables, pillar scores, the Submission Confidence Index
+    (SCI), risk registers, traceability coverage, and trend analysis. Supports
+    upload of evidence data or direct integration with 'r4subcore', 'r4subtrace',
+    'r4subrisk', and 'r4subscore'.
+License: MIT + file LICENSE
+URL: https://github.com/R4SUB/r4subui
+BugReports: https://github.com/R4SUB/r4subui/issues
+Depends:
+    R (>= 4.2)
+Imports:
+    bslib,
+    cli,
+    dplyr,
+    htmltools,
+    r4subcore,
+    r4subscore,
+    rlang,
+    shiny,
+    tibble
+Suggests:
+    DT,
+    r4subrisk,
+    r4subtrace,
+    testthat (>= 3.0.0)
+Remotes:
+    R4SUB/r4subcore,
+    R4SUB/r4subscore,
+    R4SUB/r4subtrace,
+    R4SUB/r4subrisk
+Config/testthat/edition: 3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
