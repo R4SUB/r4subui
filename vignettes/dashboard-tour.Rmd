@@ -1,0 +1,246 @@
+---
+title: "Dashboard Tour"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Dashboard Tour}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse  = TRUE,
+  comment   = "#>",
+  fig.width = 8,
+  fig.height = 4.5
+)
+```
+
+`r4subui` provides an eight-tab Shiny dashboard for the R4SUB ecosystem.
+This vignette shows what each tab produces using the built-in demo data.
+
+```{r load}
+library(r4subui)
+library(r4subcore)
+library(r4subscore)
+library(r4subrisk)
+library(r4subtrace)
+library(r4subprofile)
+library(r4subdata)
+
+# Load demo evidence (250 rows, all 4 pillars)
+data(evidence_pharma)
+ev <- evidence_pharma
+```
+
+---
+
+## Tab 1 — Overview
+
+Shows the SCI score, decision band, and pillar score cards.
+
+```{r overview, fig.cap="Overview: SCI and pillar scores"}
+pillar_scores <- compute_pillar_scores(ev)
+sci           <- compute_sci(pillar_scores)
+
+# Pillar score cards
+cols <- c(quality = "#2C6DB5", trace = "#27AE60",
+          risk = "#E74C3C", usability = "#F39C12")
+scores_vec <- setNames(pillar_scores$score, pillar_scores$pillar)
+
+par(mfrow = c(1, 2), mar = c(4, 5, 3, 1))
+
+# SCI gauge (simulated as a horizontal bar)
+band_col <- switch(sci$band,
+  ready      = "#27AE60",
+  minor_gaps = "#F39C12",
+  conditional = "#E67E22",
+  high_risk  = "#E74C3C",
+  "#2C6DB5"
+)
+barplot(sci$SCI, col = band_col, border = NA, xlim = c(0, 100),
+        horiz = TRUE, axes = FALSE,
+        main = paste0("SCI  =  ", round(sci$SCI, 1)))
+axis(1, at = c(0, 50, 70, 85, 100))
+abline(v = c(70, 85), lty = 2, col = "#888888")
+mtext(sci$band, side = 1, line = 2.5, col = band_col, font = 2)
+
+# Pillar bars
+barplot(scores_vec[names(cols)], col = cols[names(scores_vec)],
+        border = NA, ylim = c(0, 1), las = 1,
+        ylab = "Score", main = "Pillar Scores")
+abline(h = 0.85, lty = 2, col = "#555555")
+```
+
+---
+
+## Tab 2 — Evidence Explorer
+
+Filterable table of all evidence rows by domain, severity, and result.
+
+```{r evidence-table}
+# Distribution across domains and results
+with(ev, table(indicator_domain, result))
+```
+
+```{r evidence-chart, fig.cap="Evidence: result distribution by pillar"}
+domains <- c("quality", "trace", "risk", "usability")
+results <- c("pass", "warn", "fail")
+result_cols <- c(pass = "#27AE60", warn = "#F39C12", fail = "#E74C3C")
+
+mat <- sapply(results, function(r)
+  sapply(domains, function(d)
+    sum(ev$indicator_domain == d & ev$result == r, na.rm = TRUE)
+  )
+)
+
+par(mar = c(4, 7, 3, 6))
+bp <- barplot(t(mat), beside = TRUE, col = result_cols,
+              names.arg = domains, las = 1, border = NA,
+              ylab = "Count", main = "Evidence Results by Pillar")
+legend("topright", legend = results, fill = result_cols,
+       border = NA, bty = "n", inset = c(-0.15, 0), xpd = TRUE)
+```
+
+---
+
+## Tab 3 — Indicator Scores
+
+Per-indicator severity-weighted scores with SCI loss contributors.
+
+```{r indicators, fig.cap="Top 10 indicators by SCI loss contribution"}
+explanation <- sci_explain(ev)
+top_loss    <- head(explanation$top_loss, 10)
+
+par(mar = c(4, 14, 3, 2))
+barplot(rev(top_loss$loss), names.arg = rev(top_loss$indicator_name),
+        horiz = TRUE, las = 1, col = "#E74C3C", border = NA,
+        xlab = "SCI loss", main = "Top Loss Contributors")
+```
+
+---
+
+## Tab 4 — Pillar Detail
+
+Pillar contribution breakdown with result distribution per pillar.
+
+```{r pillar-detail, fig.cap="Pillar contribution to SCI"}
+contrib <- pillar_scores
+contrib$contribution <- contrib$score * sci$config$pillar_weights[contrib$pillar]
+
+par(mfrow = c(1, 2), mar = c(4, 6, 3, 1))
+barplot(setNames(contrib$score, contrib$pillar),
+        col = cols[contrib$pillar], border = NA,
+        ylim = c(0, 1), las = 1, ylab = "Score",
+        main = "Pillar Scores")
+
+barplot(setNames(contrib$contribution, contrib$pillar),
+        col = cols[contrib$pillar], border = NA, las = 1,
+        ylab = "Contribution", main = "SCI Contribution")
+```
+
+---
+
+## Tab 5 — Sensitivity Analysis
+
+SCI stability under alternative pillar weight scenarios.
+
+```{r sensitivity, fig.cap="SCI sensitivity to weight variations"}
+sens      <- sci_sensitivity_analysis(ev)
+scenarios <- sens$scenarios
+
+par(mar = c(4, 11, 3, 2))
+barplot(setNames(scenarios$sci, scenarios$scenario),
+        horiz = TRUE, las = 1, col = "#2C6DB5", border = NA,
+        xlim = c(0, 100), xlab = "SCI",
+        main = "Sensitivity: SCI by Weight Scenario")
+abline(v = sens$base_sci, lty = 2, col = "#E74C3C")
+abline(v = c(70, 85), lty = 3, col = "#888888")
+legend("bottomright", legend = c("Base SCI", "Bands"),
+       lty = c(2, 3), col = c("#E74C3C", "#888888"), bty = "n")
+```
+
+---
+
+## Tab 6 — Risk Register
+
+Severity distribution and risk register evidence table.
+
+```{r risk, fig.cap="Risk register: RPN distribution by severity level"}
+data(risk_register_pharma)
+rr     <- create_risk_register(risk_register_pharma)
+scores_risk <- compute_risk_scores(rr)
+
+dist     <- scores_risk$level_distribution
+risk_cols <- c(low = "#27AE60", medium = "#F39C12",
+               high = "#E67E22", critical = "#E74C3C")
+
+par(mar = c(4, 5, 3, 2))
+bp <- barplot(dist[names(risk_cols)],
+              col = risk_cols[names(dist)], border = NA,
+              ylab = "Count", las = 1,
+              main = paste0("Risk Distribution  |  Mean RPN = ",
+                            round(scores_risk$mean_rpn, 1)))
+```
+
+---
+
+## Tab 7 — Traceability
+
+Trace coverage summary, indicator scores, and result distribution.
+
+```{r trace, fig.cap="Traceability: result distribution"}
+data(adam_metadata); data(sdtm_metadata); data(trace_mapping)
+ctx      <- r4sub_run_context(study_id = "CDISCPILOT01", environment = "review")
+tm       <- build_trace_model(adam_metadata, sdtm_metadata, trace_mapping)
+ev_trace <- trace_model_to_evidence(tm, ctx = ctx,
+                                    source_name = "r4subtrace",
+                                    source_version = "0.1.0")
+
+res_counts <- table(ev_trace$result)
+trace_cols <- c(pass = "#27AE60", warn = "#F39C12",
+                fail = "#E74C3C", na = "#BDC3C7")
+
+par(mar = c(4, 5, 3, 2))
+barplot(res_counts[intersect(names(trace_cols), names(res_counts))],
+        col    = trace_cols[intersect(names(trace_cols), names(res_counts))],
+        border = NA, ylab = "Count", las = 1,
+        main   = paste0("Traceability Results  |  ",
+                        nrow(ev_trace), " indicators"))
+```
+
+---
+
+## Tab 8 — Authority Profile
+
+Regulatory profile selector with pillar weights and requirement coverage.
+
+```{r authority, fig.cap="Pillar weight comparison across regulatory authorities"}
+profiles <- list(
+  FDA  = submission_profile("FDA",  "NDA"),
+  EMA  = submission_profile("EMA",  "MAA"),
+  PMDA = submission_profile("PMDA", "NDA_JP")
+)
+
+weight_mat <- sapply(profiles, function(p) p$pillar_weights)
+pillars    <- rownames(weight_mat)
+
+par(mar = c(4, 5, 3, 6))
+barplot(weight_mat, beside = TRUE,
+        col    = cols[pillars],
+        border = NA, ylim = c(0, 0.5),
+        ylab   = "Weight", las = 1,
+        main   = "Pillar Weights by Regulatory Authority")
+legend("topright", legend = pillars, fill = cols[pillars],
+       border = NA, bty = "n", inset = c(-0.2, 0), xpd = TRUE)
+```
+
+---
+
+## Launch the live dashboard
+
+All of the above in one interactive browser interface:
+
+```r
+r4sub_app(evidence = evidence_pharma)
+```

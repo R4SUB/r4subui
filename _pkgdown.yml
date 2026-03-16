@@ -24,6 +24,12 @@ home:
     tables, pillar scores, the Submission Confidence Index (SCI), risk registers,
     traceability coverage, and regulatory authority profiles.
 
+articles:
+  - title: "Demos"
+    navbar: ~
+    contents:
+      - dashboard-tour
+
 reference:
   - title: "App"
     contents:
