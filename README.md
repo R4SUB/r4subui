@@ -1,10 +1,21 @@
 # r4subui
 
-**r4subui** is the interactive Shiny dashboard for the R4SUB ecosystem.
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/R4SUB/r4subui/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/R4SUB/r4subui/actions/workflows/R-CMD-check.yaml)
+[![CRAN status](https://www.r-pkg.org/badges/version/r4subui)](https://CRAN.R-project.org/package=r4subui)
+[![CRAN downloads](https://cranlogs.r-pkg.org/badges/r4subui)](https://CRAN.R-project.org/package=r4subui)
+[![r-universe](https://r4sub.r-universe.dev/badges/r4subui)](https://r4sub.r-universe.dev/r4subui)
+<!-- badges: end -->
 
-It visualizes evidence tables, pillar scores, the Submission Confidence Index (SCI), indicator contributions, and sensitivity analysis -- all in a single browser-based interface.
+**r4subui** is the interactive Shiny dashboard for the R4SUB ecosystem. It visualizes evidence tables, pillar scores, the Submission Confidence Index (SCI), risk registers, traceability coverage, and regulatory authority profiles — all in a single browser-based interface.
 
 ## Installation
+
+```r
+install.packages("r4subui")
+```
+
+Development version:
 
 ```r
 pak::pak(c("R4SUB/r4subcore", "R4SUB/r4subscore", "R4SUB/r4subui"))
@@ -19,7 +30,7 @@ library(r4subui)
 ev <- generate_demo_evidence(n_rows = 100)
 r4sub_app(evidence = ev)
 
-# Or launch with upload interface
+# Launch with upload interface
 r4sub_app()
 ```
 
@@ -28,40 +39,37 @@ r4sub_app()
 | Tab | Content |
 |---|---|
 | **Overview** | SCI score, decision band, pillar score cards, evidence summary |
-| **Evidence** | Filterable evidence table (by domain, severity, result, source) |
-| **Indicators** | Per-indicator scores + SCI explainability (loss contributors) |
+| **Evidence** | Filterable evidence table (domain, severity, result, source) |
+| **Indicators** | Per-indicator scores and SCI explainability (loss contributors) |
 | **Pillars** | Pillar bar chart, contribution table, result distribution |
-| **Sensitivity** | Interactive weight sliders + pre-defined weight scenarios |
-
-## Key Features
-
-- **Upload or pre-load**: CSV/RDS upload or pass evidence directly from R
-- **Real-time SCI**: adjust pillar weights and see SCI change instantly
-- **Color-coded**: severity and result cells are color-coded throughout
-- **Modular**: each tab is a standalone Shiny module, reusable in custom apps
-- **Themeable**: uses `bslib` with a configurable `r4sub_theme()`
+| **Sensitivity** | Interactive weight sliders and pre-defined weight scenarios |
+| **Risk** | Severity distribution, risk register evidence table |
+| **Traceability** | Trace coverage summary, indicator scores, result distribution |
+| **Authority** | Regulatory profile selector, pillar weights, requirement coverage |
 
 ## Using Modules in Custom Apps
 
-All modules are exported and can be composed into your own Shiny apps:
+All tabs are standalone Shiny modules and can be composed into your own apps:
 
 ```r
 library(shiny)
 library(r4subui)
 
 ui <- fluidPage(
-  mod_overview_ui("my_overview")
+  mod_overview_ui("ov"),
+  mod_risk_ui("rk")
 )
 
 server <- function(input, output, session) {
   ev_data <- reactiveVal(generate_demo_evidence())
-  mod_overview_server("my_overview", ev_data)
+  mod_overview_server("ov", ev_data)
+  mod_risk_server("rk", ev_data)
 }
 
 shinyApp(ui, server)
 ```
 
-## Exported Functions
+## Key Functions
 
 | Function | Purpose |
 |---|---|
@@ -70,11 +78,14 @@ shinyApp(ui, server)
 | `r4sub_value_box()` | Styled metric card |
 | `render_evidence_table()` | HTML evidence table renderer |
 | `generate_demo_evidence()` | Demo data generator |
-| `mod_overview_ui/server()` | Overview module |
+| `mod_overview_ui/server()` | Overview tab module |
 | `mod_evidence_ui/server()` | Evidence explorer module |
 | `mod_indicators_ui/server()` | Indicator scores module |
 | `mod_pillar_detail_ui/server()` | Pillar detail module |
 | `mod_sensitivity_ui/server()` | Sensitivity analysis module |
+| `mod_risk_ui/server()` | Risk register module |
+| `mod_trace_ui/server()` | Traceability coverage module |
+| `mod_authority_ui/server()` | Authority profile module |
 
 ## License
 
