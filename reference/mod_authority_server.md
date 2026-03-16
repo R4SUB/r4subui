@@ -1,0 +1,23 @@
+# Authority Profile Module Server
+
+Authority Profile Module Server
+
+## Usage
+
+``` r
+mod_authority_server(id, evidence_rv)
+```
+
+## Arguments
+
+- id:
+
+  Module namespace ID.
+
+- evidence_rv:
+
+  A reactive returning a validated evidence data.frame.
+
+## Value
+
+Invisible `NULL`.
