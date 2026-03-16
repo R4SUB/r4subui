@@ -1,13 +1,23 @@
-## R CMD check results
+## Submission notes
 
-0 errors | 0 warnings | 0 notes
+This is the first submission of r4subui. It is part of the R4SUB (R for
+Regulatory Submission) ecosystem and provides an interactive Shiny dashboard
+for visualizing evidence, pillar scores, the Submission Confidence Index (SCI),
+risk registers, traceability coverage, and regulatory authority profiles.
+
+All packages listed in Imports are available on CRAN: r4subcore, r4subprofile,
+r4subscore, r4subtrace, bslib, cli, dplyr, htmltools, rlang, shiny, tibble.
+
+---
 
 ## Test environments
 
 * local: Windows 11 x64, R 4.5.2
-* GitHub Actions: ubuntu-latest, R release
-* GitHub Actions: windows-latest, R release
+
+## R CMD check results
+
+0 errors | 0 warnings | 1 note (unable to verify current time — network issue)
 
 ## Downstream dependencies
 
-This is the first submission of this package.
+None on CRAN at this time.
