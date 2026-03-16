@@ -6,7 +6,7 @@
 \alias{r4subui-package}
 \title{r4subui: Interactive Dashboard for Clinical Submission Readiness}
 \description{
-Provides an interactive Shiny dashboard for the R4SUB ecosystem. Visualizes evidence tables, pillar scores, the Submission Confidence Index (SCI), risk registers, traceability coverage, and trend analysis. Supports upload of evidence data or direct integration with 'r4subcore', 'r4subtrace', 'r4subrisk', and 'r4subscore'.
+Provides an interactive Shiny dashboard for the R4SUB (R for Regulatory Submission) ecosystem. Visualizes evidence tables, pillar scores, the Submission Confidence Index (SCI), risk registers, traceability coverage, and trend analysis. Supports upload of evidence data or direct integration with 'r4subcore', 'r4subtrace', 'r4subrisk', and 'r4subscore'.
 }
 \seealso{
 Useful links:
@@ -17,7 +17,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Pawan Rama Mali \email{prm@outlook.in}
+\strong{Maintainer}: Pawan Rama Mali \email{prm@outlook.in} (\href{https://orcid.org/0000-0001-7864-5819}{ORCID}) [copyright holder]
 
 }
 \keyword{internal}
