@@ -1,0 +1,65 @@
+url: https://r4sub.github.io/r4subui/
+
+template:
+  bootstrap: 5
+  bootswatch: flatly
+  bslib:
+    primary: "#2C6DB5"
+
+navbar:
+  bg: light
+  structure:
+    left: [intro, reference, articles, news]
+    right: [search, github]
+  components:
+    github:
+      icon: fab fa-github
+      href: https://github.com/R4SUB/r4subui
+      aria-label: GitHub
+
+home:
+  title: "r4subui — Interactive Dashboard for Clinical Submission Readiness"
+  description: >
+    Interactive Shiny dashboard for the R4SUB ecosystem. Visualizes evidence
+    tables, pillar scores, the Submission Confidence Index (SCI), risk registers,
+    traceability coverage, and regulatory authority profiles.
+
+reference:
+  - title: "App"
+    contents:
+      - r4sub_app
+      - r4sub_theme
+      - r4sub_value_box
+  - title: "Overview & Evidence Modules"
+    contents:
+      - mod_overview_ui
+      - mod_overview_server
+      - mod_evidence_ui
+      - mod_evidence_server
+      - mod_indicators_ui
+      - mod_indicators_server
+  - title: "Analysis Modules"
+    contents:
+      - mod_pillar_detail_ui
+      - mod_pillar_detail_server
+      - mod_sensitivity_ui
+      - mod_sensitivity_server
+  - title: "Risk & Traceability Modules"
+    contents:
+      - mod_risk_ui
+      - mod_risk_server
+      - mod_trace_ui
+      - mod_trace_server
+  - title: "Authority Module"
+    contents:
+      - mod_authority_ui
+      - mod_authority_server
+  - title: "Utilities"
+    contents:
+      - render_evidence_table
+      - generate_demo_evidence
+
+footer:
+  structure:
+    left: developed_by
+    right: built_with

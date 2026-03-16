@@ -12,7 +12,7 @@ Description: Provides an interactive Shiny dashboard for the R4SUB (R for
     or direct integration with 'r4subcore', 'r4subtrace', 'r4subrisk', and
     'r4subscore'.
 License: MIT + file LICENSE
-URL: https://github.com/R4SUB/r4subui
+URL: https://r4sub.github.io/r4subui/, https://github.com/R4SUB/r4subui
 BugReports: https://github.com/R4SUB/r4subui/issues
 Depends:
     R (>= 4.2)
