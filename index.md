@@ -17,6 +17,12 @@ Development version:
 pak::pak(c("R4SUB/r4subcore", "R4SUB/r4subscore", "R4SUB/r4subui"))
 ```
 
+## Dashboard Tour
+
+See the **[Dashboard Tour
+vignette](https://r4sub.github.io/r4subui/articles/dashboard-tour.html)**
+for static output previews of all eight tabs with reproducible R code.
+
 ## Quick Start
 
 ``` r
