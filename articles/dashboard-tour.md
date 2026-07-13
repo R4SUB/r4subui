@@ -4,6 +4,7 @@
 output of each tab using the built-in demo data.
 
 ``` r
+
 library(r4subui)
 library(r4subcore)
 library(r4subscore)
@@ -30,6 +31,7 @@ cols <- c(quality = "#2C6DB5", trace = "#27AE60",
 SCI score, decision band, and per-pillar score cards.
 
 ``` r
+
 scores_vec <- setNames(pillar_scores$pillar_score, pillar_scores$pillar)
 
 band_col <- c(ready = "#27AE60", minor_gaps = "#F39C12",
@@ -62,6 +64,7 @@ Overview: SCI and pillar scores
 Filterable table of all evidence rows.
 
 ``` r
+
 with(ev, table(indicator_domain, result))
 #>                 result
 #> indicator_domain fail na pass warn
@@ -72,6 +75,7 @@ with(ev, table(indicator_domain, result))
 ```
 
 ``` r
+
 domains     <- c("quality", "trace", "risk", "usability")
 results     <- c("pass", "warn", "fail")
 result_cols <- c(pass = "#27AE60", warn = "#F39C12", fail = "#E74C3C")
@@ -102,6 +106,7 @@ Evidence: result distribution by pillar
 Per-indicator scores and SCI loss contributors.
 
 ``` r
+
 expl     <- sci_explain(ev)
 top_loss <- head(expl$indicator_contributions, 10)
 
@@ -124,6 +129,7 @@ Top 10 indicators by SCI loss contribution
 Pillar scores and their contribution to the SCI.
 
 ``` r
+
 contrib <- expl$pillar_contributions  # has pillar, pillar_score, weight, contribution, loss
 
 par(mfrow = c(1, 2), mar = c(4, 6, 3, 1))
@@ -149,6 +155,7 @@ Pillar score and SCI contribution
 SCI stability under alternative pillar weight scenarios.
 
 ``` r
+
 weight_grid <- data.frame(
   quality   = c(0.35, 0.50, 0.25, 0.25),
   trace     = c(0.25, 0.20, 0.40, 0.25),
@@ -177,6 +184,7 @@ SCI sensitivity to weight variations
 ## Tab 6 — Risk Register
 
 ``` r
+
 data(risk_register_pharma)
 rr          <- create_risk_register(risk_register_pharma)
 risk_sc     <- compute_risk_scores(rr)
@@ -203,9 +211,10 @@ Risk distribution by severity level
 ## Tab 7 — Traceability
 
 ``` r
+
 data(adam_metadata); data(sdtm_metadata); data(trace_mapping)
 ctx      <- r4sub_run_context(study_id = "CDISCPILOT01", environment = "DEV")
-#> ℹ Run context created: "R4S-20260317000955-wl4dieex"
+#> ℹ Run context created: "R4S-20260713142401-wl4dieex"
 tm       <- build_trace_model(adam_metadata, sdtm_metadata, trace_mapping)
 ev_trace <- trace_model_to_evidence(tm, ctx = ctx)
 #> ✔ Evidence table created: 47 rows
@@ -231,6 +240,7 @@ Traceability: result distribution
 ## Tab 8 — Authority Profile
 
 ``` r
+
 profiles <- list(
   FDA  = submission_profile("FDA",  "NDA"),
   EMA  = submission_profile("EMA",  "MAA"),
@@ -259,5 +269,6 @@ Pillar weights by regulatory authority
 ## Launch the live dashboard
 
 ``` r
+
 r4sub_app(evidence = evidence_pharma)
 ```
