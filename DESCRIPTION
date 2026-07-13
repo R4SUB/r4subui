@@ -5,8 +5,8 @@ Authors@R:
     person("Pawan Rama", "Mali", email = "prm@outlook.in",
            role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-7864-5819"))
-Description: Provides an interactive Shiny dashboard for the R4SUB (R for
-    Regulatory Submission) ecosystem. Visualizes evidence tables, pillar
+Description: Provides an interactive Shiny dashboard for the R4SUB (Ready for
+    Submission) ecosystem. Visualizes evidence tables, pillar
     scores, the Submission Confidence Index (SCI), risk registers,
     traceability coverage, and trend analysis. Supports upload of evidence data
     or direct integration with 'r4subcore', 'r4subtrace', 'r4subrisk', and
