@@ -7,7 +7,7 @@
 [![r-universe](https://r4sub.r-universe.dev/badges/r4subui)](https://r4sub.r-universe.dev/r4subui)
 <!-- badges: end -->
 
-**r4subui** is the interactive Shiny dashboard for the R4SUB ecosystem. It visualizes evidence tables, pillar scores, the Submission Confidence Index (SCI), risk registers, traceability coverage, and regulatory authority profiles — all in a single browser-based interface.
+**r4subui** is the interactive Shiny dashboard for the R4SUB ecosystem. It visualizes evidence tables, pillar scores, the Submission Confidence Index (SCI), risk registers, traceability coverage, and regulatory authority profiles, all in a single browser-based interface.
 
 ## Installation
 
