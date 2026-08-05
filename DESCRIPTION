@@ -33,7 +33,6 @@ Suggests:
     knitr,
     r4subdata,
     r4subrisk,
-    r4subtrace,
     rmarkdown,
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
