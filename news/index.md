@@ -1,11 +1,7 @@
 # Changelog
 
-## r4subui (development version)
-
-- Clarified the package DESCRIPTION: “R4SUB” expands to “Ready for
-  Submission” (previously “R for Regulatory Submission”, inconsistent
-  with the rest of the ecosystem).
-
 ## r4subui 0.1.0
 
 - Initial release.
+- Expanded “R4SUB” as “Ready for Submission” in the package DESCRIPTION,
+  for consistency with the rest of the ecosystem.
