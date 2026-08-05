@@ -11,9 +11,9 @@
 #' @return An HTML tags object (`shiny::tags$table`).
 #'
 #' @examples
-#' \dontrun{
-#' render_evidence_table(evidence)
-#' }
+#' ev <- suppressMessages(generate_demo_evidence(10))
+#' tbl <- render_evidence_table(ev)
+#' class(tbl)
 #'
 #' @export
 render_evidence_table <- function(
@@ -102,9 +102,8 @@ render_evidence_table <- function(
 #' @return A `bslib::value_box` element.
 #'
 #' @examples
-#' \dontrun{
-#' r4sub_value_box("SCI Score", 85.2, theme = "success")
-#' }
+#' box <- r4sub_value_box("SCI Score", 85.2, theme = "success")
+#' class(box)
 #'
 #' @export
 r4sub_value_box <- function(title, value, theme = "primary", subtitle = NULL) {

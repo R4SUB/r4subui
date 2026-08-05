@@ -27,8 +27,8 @@ Creates a formatted HTML table from an evidence data.frame, suitable for
 display in a Shiny app or static report.
 }
 \examples{
-\dontrun{
-render_evidence_table(evidence)
-}
+ev <- suppressMessages(generate_demo_evidence(10))
+tbl <- render_evidence_table(ev)
+class(tbl)
 
 }

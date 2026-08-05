@@ -23,6 +23,22 @@ test_that("mod_sensitivity_ui returns a shiny tag", {
   expect_true(inherits(ui, "shiny.tag.list") || inherits(ui, "shiny.tag"))
 })
 
+test_that("mod_risk_ui returns a shiny tag", {
+  ui <- mod_risk_ui("test")
+  expect_true(inherits(ui, "shiny.tag.list") || inherits(ui, "shiny.tag"))
+})
+
+test_that("mod_trace_ui returns a shiny tag", {
+  ui <- mod_trace_ui("test")
+  expect_true(inherits(ui, "shiny.tag.list") || inherits(ui, "shiny.tag"))
+})
+
+test_that("mod_authority_ui returns a shiny tag", {
+  skip_if_not_installed("r4subprofile")
+  ui <- mod_authority_ui("test")
+  expect_true(inherits(ui, "shiny.tag.list") || inherits(ui, "shiny.tag"))
+})
+
 test_that("r4sub_app returns a shiny.appobj", {
   skip_if_not_installed("r4subcore")
   skip_if_not_installed("r4subscore")

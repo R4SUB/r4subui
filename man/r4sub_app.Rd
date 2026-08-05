@@ -23,10 +23,10 @@ pillar scores, SCI, and sensitivity analysis.
 }
 \examples{
 \dontrun{
-# With pre-loaded evidence
-r4sub_app(evidence = my_evidence)
+# With pre-loaded demo evidence
+r4sub_app(evidence = generate_demo_evidence())
 
-# With upload interface
+# With the upload interface
 r4sub_app()
 }
 

@@ -8,11 +8,20 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE}
+# The tour uses the whole ecosystem, including the suggested r4subrisk and
+# r4subdata. Only evaluate the code chunks when every piece is available so the
+# vignette still renders where a suggested package is not installed.
+have_pkgs <- all(vapply(
+  c("r4subcore", "r4subscore", "r4subrisk", "r4subtrace",
+    "r4subprofile", "r4subdata"),
+  requireNamespace, logical(1), quietly = TRUE
+))
 knitr::opts_chunk$set(
   collapse  = TRUE,
   comment   = "#>",
   fig.width = 8,
-  fig.height = 4.5
+  fig.height = 4.5,
+  eval      = have_pkgs
 )
 ```
 

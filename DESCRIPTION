@@ -18,18 +18,15 @@ Depends:
     R (>= 4.2)
 Imports:
     bslib,
-    cli,
-    dplyr,
+    graphics,
     htmltools,
     r4subcore,
     r4subprofile,
     r4subscore,
     r4subtrace,
-    rlang,
     shiny,
-    tibble
+    utils
 Suggests:
-    DT,
     knitr,
     r4subdata,
     r4subrisk,

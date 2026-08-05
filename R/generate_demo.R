@@ -3,18 +3,35 @@
 #' Creates a realistic demo evidence data.frame covering all four pillars,
 #' multiple indicators, and mixed results. Useful for testing the dashboard.
 #'
-#' @param n_rows Approximate number of evidence rows to generate.
-#'   Default `50`.
+#' @param n_rows Number of evidence rows to generate. Default `50`.
 #' @param study_id Study identifier. Default `"DEMO-001"`.
+#' @param seed Optional integer seed for reproducible output. The caller's
+#'   random-number state is restored on exit, so setting it has no lasting side
+#'   effect. Pass `NULL` to use the current RNG state. Default `42`.
 #'
 #' @return A validated evidence data.frame.
 #'
 #' @examples
-#' ev <- generate_demo_evidence()
+#' ev <- suppressMessages(generate_demo_evidence())
 #' nrow(ev)
 #'
 #' @export
-generate_demo_evidence <- function(n_rows = 50L, study_id = "DEMO-001") {
+generate_demo_evidence <- function(n_rows = 50L, study_id = "DEMO-001",
+                                   seed = 42L) {
+  if (!is.null(seed)) {
+    # Restore the caller's RNG state on exit so this function is side-effect free.
+    if (exists(".Random.seed", envir = globalenv())) {
+      old_seed <- get(".Random.seed", envir = globalenv())
+      on.exit(assign(".Random.seed", old_seed, envir = globalenv()), add = TRUE)
+    } else {
+      on.exit(
+        suppressWarnings(rm(".Random.seed", envir = globalenv())),
+        add = TRUE
+      )
+    }
+    set.seed(seed)
+  }
+
   ctx <- r4subcore::r4sub_run_context(study_id = study_id, environment = "DEV")
 
   # Define indicator pool
@@ -43,7 +60,6 @@ generate_demo_evidence <- function(n_rows = 50L, study_id = "DEMO-001") {
   severities <- c("info", "low", "medium", "high", "critical")
   results <- c("pass", "pass", "pass", "warn", "fail")  # bias toward pass
 
-  set.seed(42)
   rows <- lapply(seq_len(n_rows), function(i) {
     ind_idx <- sample.int(nrow(indicators), 1)
     ds <- sample(datasets, 1)

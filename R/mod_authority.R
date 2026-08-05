@@ -10,8 +10,11 @@
 mod_authority_ui <- function(id) {
   ns <- shiny::NS(id)
 
-  authorities <- c("FDA", "EMA", "PMDA", "ANVISA", "Health Canada", "MHRA")
-  sub_types   <- c("NDA", "BLA", "MAA", "JNDA", "SNDA", "IND")
+  # Populate the selectors from the profile database so the choices always match
+  # what submission_profile() accepts. Submission types are authority-specific
+  # and are refreshed by the server when the authority changes.
+  authorities <- r4subprofile::list_authorities()$authority
+  sub_types   <- r4subprofile::list_submission_types(authorities[1])
 
   htmltools::tagList(
     bslib::layout_columns(
@@ -45,6 +48,15 @@ mod_authority_ui <- function(id) {
 mod_authority_server <- function(id, evidence_rv) {
   shiny::moduleServer(id, function(input, output, session) {
 
+    # Submission types depend on the authority; refresh them when it changes.
+    shiny::observeEvent(input$authority, {
+      types <- tryCatch(
+        r4subprofile::list_submission_types(input$authority),
+        error = function(e) character(0)
+      )
+      shiny::updateSelectInput(session, "sub_type", choices = types)
+    })
+
     profile_rv <- shiny::eventReactive(input$run_profile, {
       tryCatch(
         r4subprofile::submission_profile(
@@ -69,17 +81,20 @@ mod_authority_server <- function(id, evidence_rv) {
         ))
       }
 
-      summary_df <- tryCatch(
-        r4subprofile::profile_summary(prof),
-        error = function(e) NULL
+      # Build the summary table from the profile fields. profile_summary() is a
+      # console printer, not a data producer, so it is not used here.
+      summary_df <- data.frame(
+        field = c("Authority", "Full name", "Country",
+                  "Submission type", "Minimum coverage"),
+        value = c(
+          prof$authority,
+          prof$full_name,
+          prof$country,
+          prof$submission_type,
+          paste0(round(prof$minimum_coverage * 100, 1), "%")
+        ),
+        stringsAsFactors = FALSE
       )
-
-      if (is.null(summary_df)) {
-        return(htmltools::p(
-          paste0("Profile loaded: ", prof$authority, " ", prof$submission_type),
-          class = "text-info"
-        ))
-      }
 
       htmltools::tagList(
         htmltools::h4(paste0(prof$authority, " \u2014 ", prof$submission_type, " Profile")),
@@ -117,7 +132,7 @@ mod_authority_server <- function(id, evidence_rv) {
         return(htmltools::p("No evidence loaded.", class = "text-muted"))
       }
 
-      reqs <- prof$requirements
+      reqs <- prof$required_indicators
       if (is.null(reqs) || length(reqs) == 0L) {
         return(htmltools::p("No requirements defined in profile.", class = "text-muted"))
       }

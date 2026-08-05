@@ -43,16 +43,15 @@ mod_risk_server <- function(id, evidence_rv) {
       if (nrow(ev) == 0L) {
         return(htmltools::p("No risk evidence loaded.", class = "text-muted"))
       }
-      n_high   <- sum(ev$severity == "high",   na.rm = TRUE)
-      n_medium <- sum(ev$severity == "medium",  na.rm = TRUE)
-      n_low    <- sum(ev$severity == "low",     na.rm = TRUE)
-      n_fail   <- sum(ev$result   == "fail",    na.rm = TRUE)
+      n_critical <- sum(ev$severity == "critical", na.rm = TRUE)
+      n_high     <- sum(ev$severity == "high",     na.rm = TRUE)
+      n_fail     <- sum(ev$result   == "fail",     na.rm = TRUE)
 
       bslib::layout_columns(
         col_widths = c(3, 3, 3, 3),
         r4sub_value_box("Total Risks", nrow(ev), theme = "info"),
+        r4sub_value_box("Critical Severity", n_critical, theme = if (n_critical > 0) "danger" else "success"),
         r4sub_value_box("High Severity", n_high, theme = if (n_high > 0) "danger" else "success"),
-        r4sub_value_box("Medium Severity", n_medium, theme = if (n_medium > 0) "warning" else "success"),
         r4sub_value_box("Failed Checks", n_fail, theme = if (n_fail > 0) "danger" else "success")
       )
     })
@@ -61,9 +60,10 @@ mod_risk_server <- function(id, evidence_rv) {
       ev <- risk_ev()
       shiny::req(nrow(ev) > 0L)
 
-      severity_levels <- c("high", "medium", "low", "info")
+      severity_levels <- c("critical", "high", "medium", "low", "info")
       counts <- sapply(severity_levels, function(s) sum(ev$severity == s, na.rm = TRUE))
-      cols <- c(high = "#E74C3C", medium = "#F39C12", low = "#3498DB", info = "#95A5A6")
+      cols <- c(critical = "#C0392B", high = "#E74C3C", medium = "#F39C12",
+                low = "#27AE60", info = "#95A5A6")
 
       par(mar = c(4, 6, 2, 2))
       barplot(

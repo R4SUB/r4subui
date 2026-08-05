@@ -4,13 +4,16 @@
 \alias{generate_demo_evidence}
 \title{Generate Demo Evidence Data}
 \usage{
-generate_demo_evidence(n_rows = 50L, study_id = "DEMO-001")
+generate_demo_evidence(n_rows = 50L, study_id = "DEMO-001", seed = 42L)
 }
 \arguments{
-\item{n_rows}{Approximate number of evidence rows to generate.
-Default \code{50}.}
+\item{n_rows}{Number of evidence rows to generate. Default \code{50}.}
 
 \item{study_id}{Study identifier. Default \code{"DEMO-001"}.}
+
+\item{seed}{Optional integer seed for reproducible output. The caller's
+random-number state is restored on exit, so setting it has no lasting side
+effect. Pass \code{NULL} to use the current RNG state. Default \code{42}.}
 }
 \value{
 A validated evidence data.frame.
@@ -20,7 +23,7 @@ Creates a realistic demo evidence data.frame covering all four pillars,
 multiple indicators, and mixed results. Useful for testing the dashboard.
 }
 \examples{
-ev <- generate_demo_evidence()
+ev <- suppressMessages(generate_demo_evidence())
 nrow(ev)
 
 }

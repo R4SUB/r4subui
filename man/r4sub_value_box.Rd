@@ -23,8 +23,7 @@ A \code{bslib::value_box} element.
 Creates a styled value box for displaying a single metric.
 }
 \examples{
-\dontrun{
-r4sub_value_box("SCI Score", 85.2, theme = "success")
-}
+box <- r4sub_value_box("SCI Score", 85.2, theme = "success")
+class(box)
 
 }
