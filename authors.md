@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/R4SUB/r4subui/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/R4SUB/r4subui/blob/v0.1.0/DESCRIPTION)
 
 Mali P (2026). *r4subui: Interactive Dashboard for Clinical Submission
 Readiness*. R package version 0.1.0, <https://r4sub.github.io/r4subui/>.
