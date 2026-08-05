@@ -36,7 +36,8 @@ An HTML tags object (`shiny::tags$table`).
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-render_evidence_table(evidence)
-} # }
+ev <- suppressMessages(generate_demo_evidence(10))
+tbl <- render_evidence_table(ev)
+class(tbl)
+#> [1] "shiny.tag.list" "list"          
 ```

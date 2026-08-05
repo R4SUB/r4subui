@@ -1,6 +1,6 @@
 # r4subui: Interactive Dashboard for Clinical Submission Readiness
 
-Provides an interactive Shiny dashboard for the R4SUB (R for Regulatory
+Provides an interactive Shiny dashboard for the R4SUB (Ready for
 Submission) ecosystem. Visualizes evidence tables, pillar scores, the
 Submission Confidence Index (SCI), risk registers, traceability
 coverage, and trend analysis. Supports upload of evidence data or direct
@@ -10,6 +10,8 @@ integration with 'r4subcore', 'r4subtrace', 'r4subrisk', and
 ## See also
 
 Useful links:
+
+- <https://r4sub.github.io/r4subui/>
 
 - <https://github.com/R4SUB/r4subui>
 

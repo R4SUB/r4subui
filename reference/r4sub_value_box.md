@@ -36,7 +36,7 @@ element.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-r4sub_value_box("SCI Score", 85.2, theme = "success")
-} # }
+box <- r4sub_value_box("SCI Score", 85.2, theme = "success")
+class(box)
+#> [1] "bslib_fragment" "bslib_fragment" "shiny.tag"     
 ```

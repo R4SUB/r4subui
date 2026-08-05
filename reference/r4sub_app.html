@@ -35,7 +35,7 @@ pillar scores, SCI, and sensitivity analysis."></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Launch the R4SUB Dashboard</h1>
-      <small class="dont-index">Source: <a href="https://github.com/R4SUB/r4subui/blob/v0.1.0/R/app_main.R" class="external-link"><code>R/app_main.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/R4SUB/r4subui/blob/main/R/app_main.R" class="external-link"><code>R/app_main.R</code></a></small>
       <div class="d-none name"><code>r4sub_app.Rd</code></div>
     </div>
 
@@ -74,10 +74,10 @@ the app shows an upload interface.</p></dd>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="co"># With pre-loaded evidence</span></span></span>
-<span class="r-in"><span><span class="fu">r4sub_app</span><span class="op">(</span>evidence <span class="op">=</span> <span class="va">my_evidence</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># With pre-loaded demo evidence</span></span></span>
+<span class="r-in"><span><span class="fu">r4sub_app</span><span class="op">(</span>evidence <span class="op">=</span> <span class="fu"><a href="generate_demo_evidence.html">generate_demo_evidence</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># With upload interface</span></span></span>
+<span class="r-in"><span><span class="co"># With the upload interface</span></span></span>
 <span class="r-in"><span><span class="fu">r4sub_app</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>

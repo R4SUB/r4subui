@@ -35,7 +35,7 @@ display in a Shiny app or static report."></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Render an Evidence Table as HTML</h1>
-      <small class="dont-index">Source: <a href="https://github.com/R4SUB/r4subui/blob/v0.1.0/R/utils_render.R" class="external-link"><code>R/utils_render.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/R4SUB/r4subui/blob/main/R/utils_render.R" class="external-link"><code>R/utils_render.R</code></a></small>
       <div class="d-none name"><code>render_evidence_table.Rd</code></div>
     </div>
 
@@ -78,9 +78,10 @@ shows key columns.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="fu">render_evidence_table</span><span class="op">(</span><span class="va">evidence</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">ev</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="fu"><a href="generate_demo_evidence.html">generate_demo_evidence</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu">render_evidence_table</span><span class="op">(</span><span class="va">ev</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "shiny.tag.list" "list"          </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

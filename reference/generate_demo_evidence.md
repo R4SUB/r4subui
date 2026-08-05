@@ -7,18 +7,24 @@ dashboard.
 ## Usage
 
 ``` r
-generate_demo_evidence(n_rows = 50L, study_id = "DEMO-001")
+generate_demo_evidence(n_rows = 50L, study_id = "DEMO-001", seed = 42L)
 ```
 
 ## Arguments
 
 - n_rows:
 
-  Approximate number of evidence rows to generate. Default `50`.
+  Number of evidence rows to generate. Default `50`.
 
 - study_id:
 
   Study identifier. Default `"DEMO-001"`.
+
+- seed:
+
+  Optional integer seed for reproducible output. The caller's
+  random-number state is restored on exit, so setting it has no lasting
+  side effect. Pass `NULL` to use the current RNG state. Default `42`.
 
 ## Value
 
@@ -27,9 +33,7 @@ A validated evidence data.frame.
 ## Examples
 
 ``` r
-ev <- generate_demo_evidence()
-#> ℹ Run context created: "R4S-20260805001834-wl4dieex"
-#> ✔ Evidence table created: 50 rows
+ev <- suppressMessages(generate_demo_evidence())
 nrow(ev)
 #> [1] 50
 ```
