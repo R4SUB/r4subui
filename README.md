@@ -4,7 +4,6 @@
 [![R-CMD-check](https://github.com/R4SUB/r4subui/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/R4SUB/r4subui/actions/workflows/R-CMD-check.yaml)
 [![CRAN status](https://www.r-pkg.org/badges/version/r4subui)](https://CRAN.R-project.org/package=r4subui)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/r4subui)](https://CRAN.R-project.org/package=r4subui)
-[![r-universe](https://r4sub.r-universe.dev/badges/r4subui)](https://r4sub.r-universe.dev/r4subui)
 <!-- badges: end -->
 
 **r4subui** is the interactive Shiny dashboard for the R4SUB ecosystem. It visualizes evidence tables, pillar scores, the Submission Confidence Index (SCI), risk registers, traceability coverage, and regulatory authority profiles, all in a single browser-based interface.
