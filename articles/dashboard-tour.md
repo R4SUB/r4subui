@@ -214,7 +214,7 @@ Risk distribution by severity level
 
 data(adam_metadata); data(sdtm_metadata); data(trace_mapping)
 ctx      <- r4sub_run_context(study_id = "CDISCPILOT01", environment = "DEV")
-#> ℹ Run context created: "R4S-20260805054532-wl4dieex"
+#> ℹ Run context created: "R4S-20260831163111-wl4dieex"
 tm       <- build_trace_model(adam_metadata, sdtm_metadata, trace_mapping)
 ev_trace <- trace_model_to_evidence(tm, ctx = ctx)
 #> ✔ Evidence table created: 47 rows
