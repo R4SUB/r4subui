@@ -94,6 +94,12 @@ shinyApp(ui, server)
 | `mod_trace_ui/server()` | Traceability coverage module |
 | `mod_authority_ui/server()` | Authority profile module |
 
+## Maintained by
+
+R4SUB is part of the open-source work of
+[TechWorksLab](https://techworkslab.com) - clinical programming and
+regulatory submissions. Maintainer: Pawan Rama Mali.
+
 ## License
 
 MIT
