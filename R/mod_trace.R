@@ -91,6 +91,8 @@ mod_trace_server <- function(id, evidence_rv) {
       counts <- sapply(results, function(r) sum(ev$result == r, na.rm = TRUE))
       rc <- result_colors()
 
+      oldpar <- par(no.readonly = TRUE)
+      on.exit(par(oldpar))
       par(mar = c(4, 4, 2, 2))
       barplot(
         counts,

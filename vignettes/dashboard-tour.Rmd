@@ -60,6 +60,8 @@ scores_vec <- setNames(pillar_scores$pillar_score, pillar_scores$pillar)
 band_col <- c(ready = "#27AE60", minor_gaps = "#F39C12",
               conditional = "#E67E22", high_risk = "#E74C3C")[[sci$band]]
 
+# Save the caller's graphics parameters; restored in the final chunk.
+oldpar <- par(no.readonly = TRUE)
 par(mfrow = c(1, 2), mar = c(4, 5, 3, 1))
 
 barplot(sci$SCI, col = band_col, border = NA, xlim = c(0, 100),
@@ -229,6 +231,11 @@ barplot(weight_mat, beside = TRUE,
         main = "Pillar Weights by Regulatory Authority")
 legend("topright", legend = pillars, fill = cols[pillars],
        border = NA, bty = "n", inset = c(-0.22, 0), xpd = TRUE)
+```
+
+```{r reset, include = FALSE}
+# Restore the graphics parameters saved at the start of the tour.
+par(oldpar)
 ```
 
 ---

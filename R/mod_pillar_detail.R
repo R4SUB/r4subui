@@ -46,6 +46,8 @@ mod_pillar_detail_server <- function(id, evidence_rv) {
       cols <- ifelse(scores >= 80, "#27AE60",
                      ifelse(scores >= 60, "#F39C12", "#E74C3C"))
 
+      oldpar <- par(no.readonly = TRUE)
+      on.exit(par(oldpar))
       par(mar = c(4, 6, 2, 2))
       bp <- barplot(
         scores,
@@ -98,6 +100,8 @@ mod_pillar_detail_server <- function(id, evidence_rv) {
         }
       }
 
+      oldpar <- par(no.readonly = TRUE)
+      on.exit(par(oldpar))
       par(mar = c(4, 4, 2, 8), xpd = TRUE)
       barplot(
         mat,
