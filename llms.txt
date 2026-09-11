@@ -104,6 +104,11 @@ regulatory submissions. Maintainer: Pawan Rama Mali.
 
 MIT
 
+## Further reading
+
+- [R4SUB articles on the TECHWORKSLAB
+  blog](https://techworkslab.com/insights)
+
 # Package index
 
 ## App
