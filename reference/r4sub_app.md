@@ -35,11 +35,11 @@ A Shiny app object (returned invisibly; runs interactively).
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-# With pre-loaded demo evidence
-r4sub_app(evidence = generate_demo_evidence())
+if (interactive()) {
+  # With pre-loaded demo evidence
+  r4sub_app(evidence = generate_demo_evidence())
 
-# With the upload interface
-r4sub_app()
-} # }
+  # With the upload interface
+  r4sub_app()
+}
 ```

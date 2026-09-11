@@ -37,6 +37,8 @@ scores_vec <- setNames(pillar_scores$pillar_score, pillar_scores$pillar)
 band_col <- c(ready = "#27AE60", minor_gaps = "#F39C12",
               conditional = "#E67E22", high_risk = "#E74C3C")[[sci$band]]
 
+# Save the caller's graphics parameters; restored in the final chunk.
+oldpar <- par(no.readonly = TRUE)
 par(mfrow = c(1, 2), mar = c(4, 5, 3, 1))
 
 barplot(sci$SCI, col = band_col, border = NA, xlim = c(0, 100),
@@ -214,7 +216,7 @@ Risk distribution by severity level
 
 data(adam_metadata); data(sdtm_metadata); data(trace_mapping)
 ctx      <- r4sub_run_context(study_id = "CDISCPILOT01", environment = "DEV")
-#> ℹ Run context created: "R4S-20260904111018-wl4dieex"
+#> ℹ Run context created: "R4S-20260911184320-wl4dieex"
 tm       <- build_trace_model(adam_metadata, sdtm_metadata, trace_mapping)
 ev_trace <- trace_model_to_evidence(tm, ctx = ctx)
 #> ✔ Evidence table created: 47 rows

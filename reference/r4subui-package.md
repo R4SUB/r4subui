@@ -1,6 +1,6 @@
 # r4subui: Interactive Dashboard for Clinical Submission Readiness
 
-Provides an interactive Shiny dashboard for the R4SUB (Ready for
+Provides an interactive 'shiny' dashboard for the R4SUB (Ready for
 Submission) ecosystem. Visualizes evidence tables, pillar scores, the
 Submission Confidence Index (SCI), risk registers, traceability
 coverage, and trend analysis. Supports upload of evidence data or direct
