@@ -65,6 +65,8 @@ mod_risk_server <- function(id, evidence_rv) {
       cols <- c(critical = "#C0392B", high = "#E74C3C", medium = "#F39C12",
                 low = "#27AE60", info = "#95A5A6")
 
+      oldpar <- par(no.readonly = TRUE)
+      on.exit(par(oldpar))
       par(mar = c(4, 6, 2, 2))
       barplot(
         counts,

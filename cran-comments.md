@@ -1,7 +1,18 @@
+## Resubmission
+
+This is a resubmission addressing the review comments:
+
+* Software names in the Description are now single-quoted ('shiny').
+* The `r4sub_app()` example, which launches an interactive dashboard, is now
+  wrapped in `if (interactive()) { ... }` instead of `\dontrun{}`.
+* Functions that change graphical parameters now save and restore them with an
+  immediate `on.exit(par(oldpar))` (R/mod_pillar_detail.R, R/mod_risk.R,
+  R/mod_trace.R). The vignette that changes `par()` now restores it as well.
+
 ## Submission notes
 
 This is the first submission of r4subui. It is part of the R4SUB (Ready for
-Submission) ecosystem and provides an interactive Shiny dashboard for
+Submission) ecosystem and provides an interactive 'shiny' dashboard for
 visualizing evidence, pillar scores, the Submission Confidence Index (SCI),
 risk registers, traceability coverage, and regulatory authority profiles.
 
