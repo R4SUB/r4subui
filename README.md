@@ -97,3 +97,7 @@ R4SUB is part of the open-source work of [TechWorksLab](https://techworkslab.com
 ## License
 
 MIT
+
+## Further reading
+
+- [R4SUB articles on the TECHWORKSLAB blog](https://techworkslab.com/insights)
