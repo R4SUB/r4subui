@@ -17,7 +17,18 @@ mod_trace_ui <- function(id) {
     shiny::uiOutput(ns("indicator_table")),
     htmltools::hr(),
     htmltools::h4("Result Distribution"),
-    shiny::plotOutput(ns("trace_chart"), height = "280px")
+    shiny::plotOutput(ns("trace_chart"), height = "280px"),
+    htmltools::hr(),
+    htmltools::h4("Change Impact Analysis"),
+    htmltools::p(
+      "Pick a source variable to see the ADaM variables that derive from it, ",
+      "directly or through a chain. Uses a demo trace model built from the ",
+      "'r4subdata' metadata.",
+      class = "text-muted small"
+    ),
+    shiny::selectInput(ns("changed_var"), "Changed source variable",
+                       choices = NULL),
+    shiny::uiOutput(ns("impact_table"))
   )
 }
 
@@ -103,6 +114,64 @@ mod_trace_server <- function(id, evidence_rv) {
         ylab      = "Count",
         main      = "Trace Results",
         las       = 1
+      )
+    })
+
+    # Demo trace model from the r4subdata metadata (a suggested package).
+    trace_model_demo <- shiny::reactive({
+      if (!requireNamespace("r4subdata", quietly = TRUE)) return(NULL)
+      tryCatch(
+        suppressMessages(r4subtrace::build_trace_model(
+          r4subdata::adam_metadata,
+          r4subdata::sdtm_metadata,
+          r4subdata::trace_mapping
+        )),
+        error = function(e) NULL
+      )
+    })
+
+    # Populate the picker with source (SDTM) variables, which are the ones that
+    # have downstream ADaM dependents.
+    shiny::observe({
+      tm <- trace_model_demo()
+      if (is.null(tm)) return()
+      nodes <- tm$nodes[tm$nodes$node_type == "variable" &
+                          tm$nodes$role == "sdtm", , drop = FALSE]
+      labs <- sort(unique(paste0(nodes$dataset, ".", nodes$variable)))
+      if (length(labs) == 0L) return()
+      sel <- if ("DM.AGE" %in% labs) "DM.AGE" else labs[1]
+      shiny::updateSelectInput(session, "changed_var",
+                               choices = labs, selected = sel)
+    })
+
+    impact_result <- shiny::reactive({
+      tm <- trace_model_demo()
+      shiny::req(tm, input$changed_var)
+      tryCatch(
+        suppressMessages(r4subtrace::trace_impact(tm, changed = input$changed_var)),
+        error = function(e) NULL
+      )
+    })
+
+    output$impact_table <- shiny::renderUI({
+      tm <- trace_model_demo()
+      if (is.null(tm)) {
+        return(htmltools::p(
+          "Change impact needs the r4subdata metadata package.",
+          class = "text-muted"
+        ))
+      }
+      imp <- impact_result()
+      if (is.null(imp) || nrow(imp) == 0L) {
+        return(htmltools::p(
+          "No downstream variables derive from the selected variable.",
+          class = "text-muted"
+        ))
+      }
+      render_evidence_table(
+        as.data.frame(imp),
+        columns = c("dataset", "variable", "role", "depth", "path"),
+        max_rows = 100L
       )
     })
 

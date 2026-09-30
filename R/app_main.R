@@ -36,6 +36,7 @@ r4sub_app <- function(evidence = NULL, theme = r4sub_theme(), ...) {
     ),
     bslib::navset_tab(
       bslib::nav_panel("Overview", mod_overview_ui("overview")),
+      bslib::nav_panel("Targets", mod_targets_ui("targets")),
       bslib::nav_panel("Evidence", mod_evidence_ui("evidence")),
       bslib::nav_panel("Indicators", mod_indicators_ui("indicators")),
       bslib::nav_panel("Pillars", mod_pillar_detail_ui("pillars")),
@@ -128,6 +129,7 @@ r4sub_app <- function(evidence = NULL, theme = r4sub_theme(), ...) {
 
     # Wire up modules
     mod_overview_server("overview", ev_store)
+    mod_targets_server("targets", ev_store)
     mod_evidence_server("evidence", ev_store)
     mod_indicators_server("indicators", ev_store)
     mod_pillar_detail_server("pillars", ev_store)
