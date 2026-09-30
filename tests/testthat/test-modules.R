@@ -8,6 +8,11 @@ test_that("mod_evidence_ui returns a shiny tag", {
   expect_true(inherits(ui, "shiny.tag.list") || inherits(ui, "shiny.tag"))
 })
 
+test_that("mod_targets_ui returns a shiny tag", {
+  ui <- mod_targets_ui("test")
+  expect_true(inherits(ui, "shiny.tag.list") || inherits(ui, "shiny.tag"))
+})
+
 test_that("mod_indicators_ui returns a shiny tag", {
   ui <- mod_indicators_ui("test")
   expect_true(inherits(ui, "shiny.tag.list") || inherits(ui, "shiny.tag"))

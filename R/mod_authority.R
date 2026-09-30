@@ -33,7 +33,15 @@ mod_authority_ui <- function(id) {
     shiny::uiOutput(ns("weights_table")),
     htmltools::hr(),
     htmltools::h4("Requirement Coverage"),
-    shiny::uiOutput(ns("coverage_table"))
+    shiny::uiOutput(ns("coverage_table")),
+    htmltools::hr(),
+    htmltools::h4("Authority Comparison"),
+    htmltools::p(
+      "How the readiness bar differs across regulatory authorities.",
+      class = "text-muted small"
+    ),
+    shiny::plotOutput(ns("compare_chart"), height = "300px"),
+    shiny::uiOutput(ns("compare_table"))
   )
 }
 
@@ -97,7 +105,7 @@ mod_authority_server <- function(id, evidence_rv) {
       )
 
       htmltools::tagList(
-        htmltools::h4(paste0(prof$authority, " \u2014 ", prof$submission_type, " Profile")),
+        htmltools::h4(paste0(prof$authority, " ", prof$submission_type, " Profile")),
         render_evidence_table(summary_df, columns = names(summary_df), max_rows = 20L)
       )
     })
@@ -147,6 +155,55 @@ mod_authority_server <- function(id, evidence_rv) {
         stringsAsFactors = FALSE
       )
       render_evidence_table(cov_df, columns = names(cov_df), max_rows = 50L)
+    })
+
+    # Cross-authority comparison. Needs no evidence or profile selection.
+    authority_comparison <- shiny::reactive({
+      tryCatch(
+        r4subprofile::compare_authorities(),
+        error = function(e) NULL
+      )
+    })
+
+    output$compare_chart <- shiny::renderPlot({
+      cmp <- authority_comparison()
+      shiny::req(cmp, nrow(cmp) > 0L)
+
+      wcols <- c("w_quality", "w_trace", "w_risk", "w_usability")
+      mat <- t(as.matrix(cmp[, wcols, drop = FALSE]))
+      colnames(mat) <- cmp$authority
+      rownames(mat) <- c("quality", "trace", "risk", "usability")
+      cols <- c(quality = "#2C6DB5", trace = "#27AE60",
+                risk = "#E74C3C", usability = "#F39C12")
+
+      oldpar <- par(no.readonly = TRUE)
+      on.exit(par(oldpar))
+      par(mar = c(4, 4, 3, 8), xpd = TRUE)
+      barplot(
+        mat,
+        beside = TRUE,
+        col    = cols[rownames(mat)],
+        border = NA,
+        ylab   = "Pillar weight",
+        main   = "Pillar Weights by Authority",
+        las    = 1
+      )
+      legend("topright", legend = rownames(mat), fill = cols[rownames(mat)],
+             border = NA, bty = "n", inset = c(-0.18, 0))
+    })
+
+    output$compare_table <- shiny::renderUI({
+      cmp <- authority_comparison()
+      if (is.null(cmp) || nrow(cmp) == 0L) {
+        return(htmltools::p("Authority comparison unavailable.",
+                            class = "text-muted"))
+      }
+      cols <- intersect(
+        c("authority", "submission_type", "ready_min", "minimum_coverage",
+          "n_required_indicators", "default_detectability"),
+        names(cmp)
+      )
+      render_evidence_table(as.data.frame(cmp), columns = cols, max_rows = 20L)
     })
 
     invisible(NULL)
