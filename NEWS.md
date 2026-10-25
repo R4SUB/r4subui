@@ -1,3 +1,7 @@
+# r4subui 0.2.1
+
+- Metadata and documentation polish for CRAN submission; no user-facing changes.
+
 # r4subui 0.2.0
 
 - Add a Targets panel that sets a target SCI and shows the gap to it plus the
