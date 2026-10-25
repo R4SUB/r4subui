@@ -18,7 +18,7 @@ navbar:
       aria-label: GitHub
 
 home:
-  title: "r4subui — Interactive Dashboard for Clinical Submission Readiness"
+  title: "r4subui: Interactive Dashboard for Clinical Submission Readiness"
   description: >
     Interactive Shiny dashboard for the R4SUB ecosystem. Visualizes evidence
     tables, pillar scores, the Submission Confidence Index (SCI), risk registers,
@@ -60,6 +60,10 @@ reference:
     contents:
       - mod_authority_ui
       - mod_authority_server
+  - title: "Targets Module"
+    contents:
+      - mod_targets_ui
+      - mod_targets_server
   - title: "Utilities"
     contents:
       - render_evidence_table
