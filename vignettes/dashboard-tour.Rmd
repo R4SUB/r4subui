@@ -50,7 +50,7 @@ cols <- c(quality = "#2C6DB5", trace = "#27AE60",
 
 ---
 
-## Tab 1 — Overview
+## Tab 1 - Overview
 
 SCI score, decision band, and per-pillar score cards.
 
@@ -79,7 +79,7 @@ abline(h = 0.85, lty = 2, col = "#555555")
 
 ---
 
-## Tab 2 — Evidence Explorer
+## Tab 2 - Evidence Explorer
 
 Filterable table of all evidence rows.
 
@@ -108,7 +108,7 @@ legend("topright", legend = results, fill = result_cols,
 
 ---
 
-## Tab 3 — Indicator Scores
+## Tab 3 - Indicator Scores
 
 Per-indicator scores and SCI loss contributors.
 
@@ -125,7 +125,7 @@ barplot(rev(top_loss$loss),
 
 ---
 
-## Tab 4 — Pillar Detail
+## Tab 4 - Pillar Detail
 
 Pillar scores and their contribution to the SCI.
 
@@ -145,7 +145,7 @@ barplot(setNames(contrib$contribution, contrib$pillar),
 
 ---
 
-## Tab 5 — Sensitivity Analysis
+## Tab 5 - Sensitivity Analysis
 
 SCI stability under alternative pillar weight scenarios.
 
@@ -170,7 +170,7 @@ abline(v = c(70, 85), lty = 2, col = "#888888")
 
 ---
 
-## Tab 6 — Risk Register
+## Tab 6 - Risk Register
 
 ```{r risk, fig.cap = "Risk distribution by severity level"}
 data(risk_register_pharma)
@@ -191,7 +191,7 @@ barplot(rd_plot, col = risk_cols[names(rd_plot)], border = NA,
 
 ---
 
-## Tab 7 — Traceability
+## Tab 7 - Traceability
 
 ```{r trace, fig.cap = "Traceability: result distribution"}
 data(adam_metadata); data(sdtm_metadata); data(trace_mapping)
@@ -212,7 +212,7 @@ barplot(rc, col = trace_cols[names(rc)], border = NA,
 
 ---
 
-## Tab 8 — Authority Profile
+## Tab 8 - Authority Profile
 
 ```{r authority, fig.cap = "Pillar weights by regulatory authority"}
 profiles <- list(
