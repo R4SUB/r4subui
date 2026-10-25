@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">r4subui</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,25 +69,25 @@
 vignette shows the output of each tab using the built-in demo data.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r4sub.github.io/r4subui/">r4subui</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/R4SUB/r4subcore" class="external-link">r4subcore</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/R4SUB/r4subscore" class="external-link">r4subscore</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/R4SUB/r4subrisk" class="external-link">r4subrisk</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/R4SUB/r4subtrace" class="external-link">r4subtrace</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/R4SUB/r4subprofile" class="external-link">r4subprofile</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/R4SUB/r4subdata" class="external-link">r4subdata</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r4sub.github.io/r4subcore/" class="external-link">r4subcore</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r4sub.github.io/r4subscore/" class="external-link">r4subscore</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r4sub.github.io/r4subrisk/" class="external-link">r4subrisk</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r4sub.github.io/r4subtrace/" class="external-link">r4subtrace</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r4sub.github.io/r4subprofile/" class="external-link">r4subprofile</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r4sub.github.io/r4subdata/" class="external-link">r4subdata</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">evidence_pharma</span><span class="op">)</span></span>
 <span><span class="va">ev</span> <span class="op">&lt;-</span> <span class="va">evidence_pharma</span></span>
 <span></span>
 <span><span class="co"># Pre-compute shared objects</span></span>
-<span><span class="va">pillar_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/r4subscore/man/compute_pillar_scores.html" class="external-link">compute_pillar_scores</a></span><span class="op">(</span><span class="va">ev</span><span class="op">)</span></span>
-<span><span class="va">sci</span>           <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/r4subscore/man/compute_sci.html" class="external-link">compute_sci</a></span><span class="op">(</span><span class="va">pillar_scores</span><span class="op">)</span></span>
+<span><span class="va">pillar_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r4sub.github.io/r4subscore/reference/compute_pillar_scores.html" class="external-link">compute_pillar_scores</a></span><span class="op">(</span><span class="va">ev</span><span class="op">)</span></span>
+<span><span class="va">sci</span>           <span class="op">&lt;-</span> <span class="fu"><a href="https://r4sub.github.io/r4subscore/reference/compute_sci.html" class="external-link">compute_sci</a></span><span class="op">(</span><span class="va">pillar_scores</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>quality <span class="op">=</span> <span class="st">"#2C6DB5"</span>, trace <span class="op">=</span> <span class="st">"#27AE60"</span>,</span>
 <span>          risk <span class="op">=</span> <span class="st">"#E74C3C"</span>, usability <span class="op">=</span> <span class="st">"#F39C12"</span><span class="op">)</span></span></code></pre></div>
 <hr>
 <div class="section level2">
-<h2 id="tab-1-overview">Tab 1 — Overview<a class="anchor" aria-label="anchor" href="#tab-1-overview"></a>
+<h2 id="tab-1---overview">Tab 1 - Overview<a class="anchor" aria-label="anchor" href="#tab-1---overview"></a>
 </h2>
 <p>SCI score, decision band, and per-pillar score cards.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -119,7 +119,7 @@ Overview: SCI and pillar scores
 <hr>
 </div>
 <div class="section level2">
-<h2 id="tab-2-evidence-explorer">Tab 2 — Evidence Explorer<a class="anchor" aria-label="anchor" href="#tab-2-evidence-explorer"></a>
+<h2 id="tab-2---evidence-explorer">Tab 2 - Evidence Explorer<a class="anchor" aria-label="anchor" href="#tab-2---evidence-explorer"></a>
 </h2>
 <p>Filterable table of all evidence rows.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -155,11 +155,11 @@ Evidence: result distribution by pillar
 <hr>
 </div>
 <div class="section level2">
-<h2 id="tab-3-indicator-scores">Tab 3 — Indicator Scores<a class="anchor" aria-label="anchor" href="#tab-3-indicator-scores"></a>
+<h2 id="tab-3---indicator-scores">Tab 3 - Indicator Scores<a class="anchor" aria-label="anchor" href="#tab-3---indicator-scores"></a>
 </h2>
 <p>Per-indicator scores and SCI loss contributors.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">expl</span>     <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/r4subscore/man/sci_explain.html" class="external-link">sci_explain</a></span><span class="op">(</span><span class="va">ev</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">expl</span>     <span class="op">&lt;-</span> <span class="fu"><a href="https://r4sub.github.io/r4subscore/reference/sci_explain.html" class="external-link">sci_explain</a></span><span class="op">(</span><span class="va">ev</span><span class="op">)</span></span>
 <span><span class="va">top_loss</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">expl</span><span class="op">$</span><span class="va">indicator_contributions</span>, <span class="fl">10</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">14</span>, <span class="fl">3</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
@@ -175,7 +175,7 @@ Top 10 indicators by SCI loss contribution
 <hr>
 </div>
 <div class="section level2">
-<h2 id="tab-4-pillar-detail">Tab 4 — Pillar Detail<a class="anchor" aria-label="anchor" href="#tab-4-pillar-detail"></a>
+<h2 id="tab-4---pillar-detail">Tab 4 - Pillar Detail<a class="anchor" aria-label="anchor" href="#tab-4---pillar-detail"></a>
 </h2>
 <p>Pillar scores and their contribution to the SCI.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -198,7 +198,7 @@ Pillar score and SCI contribution
 <hr>
 </div>
 <div class="section level2">
-<h2 id="tab-5-sensitivity-analysis">Tab 5 — Sensitivity Analysis<a class="anchor" aria-label="anchor" href="#tab-5-sensitivity-analysis"></a>
+<h2 id="tab-5---sensitivity-analysis">Tab 5 - Sensitivity Analysis<a class="anchor" aria-label="anchor" href="#tab-5---sensitivity-analysis"></a>
 </h2>
 <p>SCI stability under alternative pillar weight scenarios.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -210,7 +210,7 @@ Pillar score and SCI contribution
 <span><span class="op">)</span></span>
 <span><span class="va">scenario_labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Default"</span>, <span class="st">"Quality-heavy"</span>, <span class="st">"Trace-heavy"</span>, <span class="st">"Equal"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">sens</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/r4subscore/man/sci_sensitivity_analysis.html" class="external-link">sci_sensitivity_analysis</a></span><span class="op">(</span><span class="va">ev</span>, <span class="va">weight_grid</span><span class="op">)</span></span>
+<span><span class="va">sens</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r4sub.github.io/r4subscore/reference/sci_sensitivity_analysis.html" class="external-link">sci_sensitivity_analysis</a></span><span class="op">(</span><span class="va">ev</span>, <span class="va">weight_grid</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">11</span>, <span class="fl">3</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/setNames.html" class="external-link">setNames</a></span><span class="op">(</span><span class="va">sens</span><span class="op">$</span><span class="va">SCI</span>, <span class="va">scenario_labels</span><span class="op">)</span>,</span>
@@ -226,12 +226,12 @@ SCI sensitivity to weight variations
 <hr>
 </div>
 <div class="section level2">
-<h2 id="tab-6-risk-register">Tab 6 — Risk Register<a class="anchor" aria-label="anchor" href="#tab-6-risk-register"></a>
+<h2 id="tab-6---risk-register">Tab 6 - Risk Register<a class="anchor" aria-label="anchor" href="#tab-6---risk-register"></a>
 </h2>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">risk_register_pharma</span><span class="op">)</span></span>
-<span><span class="va">rr</span>          <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/r4subrisk/man/create_risk_register.html" class="external-link">create_risk_register</a></span><span class="op">(</span><span class="va">risk_register_pharma</span><span class="op">)</span></span>
-<span><span class="va">risk_sc</span>     <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/r4subrisk/man/compute_risk_scores.html" class="external-link">compute_risk_scores</a></span><span class="op">(</span><span class="va">rr</span><span class="op">)</span></span>
+<span><span class="va">rr</span>          <span class="op">&lt;-</span> <span class="fu"><a href="https://r4sub.github.io/r4subrisk/reference/create_risk_register.html" class="external-link">create_risk_register</a></span><span class="op">(</span><span class="va">risk_register_pharma</span><span class="op">)</span></span>
+<span><span class="va">risk_sc</span>     <span class="op">&lt;-</span> <span class="fu"><a href="https://r4sub.github.io/r4subrisk/reference/compute_risk_scores.html" class="external-link">compute_risk_scores</a></span><span class="op">(</span><span class="va">rr</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">rd</span>        <span class="op">&lt;-</span> <span class="va">risk_sc</span><span class="op">$</span><span class="va">risk_distribution</span></span>
 <span><span class="va">risk_cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>low <span class="op">=</span> <span class="st">"#27AE60"</span>, medium <span class="op">=</span> <span class="st">"#F39C12"</span>,</span>
@@ -251,14 +251,14 @@ Risk distribution by severity level
 <hr>
 </div>
 <div class="section level2">
-<h2 id="tab-7-traceability">Tab 7 — Traceability<a class="anchor" aria-label="anchor" href="#tab-7-traceability"></a>
+<h2 id="tab-7---traceability">Tab 7 - Traceability<a class="anchor" aria-label="anchor" href="#tab-7---traceability"></a>
 </h2>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">adam_metadata</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">sdtm_metadata</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">trace_mapping</span><span class="op">)</span></span>
-<span><span class="va">ctx</span>      <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/r4subcore/man/r4sub_run_context.html" class="external-link">r4sub_run_context</a></span><span class="op">(</span>study_id <span class="op">=</span> <span class="st">"CDISCPILOT01"</span>, environment <span class="op">=</span> <span class="st">"DEV"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Run context created: <span style="color: #0000BB;">"R4S-20260912002300-wl4dieex"</span></span></span>
-<span><span class="va">tm</span>       <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/r4subtrace/man/build_trace_model.html" class="external-link">build_trace_model</a></span><span class="op">(</span><span class="va">adam_metadata</span>, <span class="va">sdtm_metadata</span>, <span class="va">trace_mapping</span><span class="op">)</span></span>
-<span><span class="va">ev_trace</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/r4subtrace/man/trace_model_to_evidence.html" class="external-link">trace_model_to_evidence</a></span><span class="op">(</span><span class="va">tm</span>, ctx <span class="op">=</span> <span class="va">ctx</span><span class="op">)</span></span>
+<span><span class="va">ctx</span>      <span class="op">&lt;-</span> <span class="fu"><a href="https://r4sub.github.io/r4subcore/reference/r4sub_run_context.html" class="external-link">r4sub_run_context</a></span><span class="op">(</span>study_id <span class="op">=</span> <span class="st">"CDISCPILOT01"</span>, environment <span class="op">=</span> <span class="st">"DEV"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Run context created: <span style="color: #0000BB;">"R4S-20261025204640-wl4dieex"</span></span></span>
+<span><span class="va">tm</span>       <span class="op">&lt;-</span> <span class="fu"><a href="https://r4sub.github.io/r4subtrace/reference/build_trace_model.html" class="external-link">build_trace_model</a></span><span class="op">(</span><span class="va">adam_metadata</span>, <span class="va">sdtm_metadata</span>, <span class="va">trace_mapping</span><span class="op">)</span></span>
+<span><span class="va">ev_trace</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r4sub.github.io/r4subtrace/reference/trace_model_to_evidence.html" class="external-link">trace_model_to_evidence</a></span><span class="op">(</span><span class="va">tm</span>, ctx <span class="op">=</span> <span class="va">ctx</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> Evidence table created: 47 rows</span></span>
 <span></span>
 <span><span class="va">res_counts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">ev_trace</span><span class="op">$</span><span class="va">result</span><span class="op">)</span></span>
@@ -278,13 +278,13 @@ Traceability: result distribution
 <hr>
 </div>
 <div class="section level2">
-<h2 id="tab-8-authority-profile">Tab 8 — Authority Profile<a class="anchor" aria-label="anchor" href="#tab-8-authority-profile"></a>
+<h2 id="tab-8---authority-profile">Tab 8 - Authority Profile<a class="anchor" aria-label="anchor" href="#tab-8---authority-profile"></a>
 </h2>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">profiles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>  FDA  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/r4subprofile/man/submission_profile.html" class="external-link">submission_profile</a></span><span class="op">(</span><span class="st">"FDA"</span>,  <span class="st">"NDA"</span><span class="op">)</span>,</span>
-<span>  EMA  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/r4subprofile/man/submission_profile.html" class="external-link">submission_profile</a></span><span class="op">(</span><span class="st">"EMA"</span>,  <span class="st">"MAA"</span><span class="op">)</span>,</span>
-<span>  PMDA <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/r4subprofile/man/submission_profile.html" class="external-link">submission_profile</a></span><span class="op">(</span><span class="st">"PMDA"</span>, <span class="st">"NDA_JP"</span><span class="op">)</span></span>
+<span>  FDA  <span class="op">=</span> <span class="fu"><a href="https://r4sub.github.io/r4subprofile/reference/submission_profile.html" class="external-link">submission_profile</a></span><span class="op">(</span><span class="st">"FDA"</span>,  <span class="st">"NDA"</span><span class="op">)</span>,</span>
+<span>  EMA  <span class="op">=</span> <span class="fu"><a href="https://r4sub.github.io/r4subprofile/reference/submission_profile.html" class="external-link">submission_profile</a></span><span class="op">(</span><span class="st">"EMA"</span>,  <span class="st">"MAA"</span><span class="op">)</span>,</span>
+<span>  PMDA <span class="op">=</span> <span class="fu"><a href="https://r4sub.github.io/r4subprofile/reference/submission_profile.html" class="external-link">submission_profile</a></span><span class="op">(</span><span class="st">"PMDA"</span>, <span class="st">"NDA_JP"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">weight_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">profiles</span>, <span class="kw">function</span><span class="op">(</span><span class="va">p</span><span class="op">)</span> <span class="va">p</span><span class="op">$</span><span class="va">pillar_weights</span><span class="op">)</span></span>

@@ -26,7 +26,7 @@ cols <- c(quality = "#2C6DB5", trace = "#27AE60",
 
 ------------------------------------------------------------------------
 
-## Tab 1 — Overview
+## Tab 1 - Overview
 
 SCI score, decision band, and per-pillar score cards.
 
@@ -61,7 +61,7 @@ Overview: SCI and pillar scores
 
 ------------------------------------------------------------------------
 
-## Tab 2 — Evidence Explorer
+## Tab 2 - Evidence Explorer
 
 Filterable table of all evidence rows.
 
@@ -103,7 +103,7 @@ Evidence: result distribution by pillar
 
 ------------------------------------------------------------------------
 
-## Tab 3 — Indicator Scores
+## Tab 3 - Indicator Scores
 
 Per-indicator scores and SCI loss contributors.
 
@@ -126,7 +126,7 @@ Top 10 indicators by SCI loss contribution
 
 ------------------------------------------------------------------------
 
-## Tab 4 — Pillar Detail
+## Tab 4 - Pillar Detail
 
 Pillar scores and their contribution to the SCI.
 
@@ -152,7 +152,7 @@ Pillar score and SCI contribution
 
 ------------------------------------------------------------------------
 
-## Tab 5 — Sensitivity Analysis
+## Tab 5 - Sensitivity Analysis
 
 SCI stability under alternative pillar weight scenarios.
 
@@ -183,7 +183,7 @@ SCI sensitivity to weight variations
 
 ------------------------------------------------------------------------
 
-## Tab 6 — Risk Register
+## Tab 6 - Risk Register
 
 ``` r
 
@@ -210,13 +210,13 @@ Risk distribution by severity level
 
 ------------------------------------------------------------------------
 
-## Tab 7 — Traceability
+## Tab 7 - Traceability
 
 ``` r
 
 data(adam_metadata); data(sdtm_metadata); data(trace_mapping)
 ctx      <- r4sub_run_context(study_id = "CDISCPILOT01", environment = "DEV")
-#> ℹ Run context created: "R4S-20260912002300-wl4dieex"
+#> ℹ Run context created: "R4S-20261025204640-wl4dieex"
 tm       <- build_trace_model(adam_metadata, sdtm_metadata, trace_mapping)
 ev_trace <- trace_model_to_evidence(tm, ctx = ctx)
 #> ✔ Evidence table created: 47 rows
@@ -239,7 +239,7 @@ Traceability: result distribution
 
 ------------------------------------------------------------------------
 
-## Tab 8 — Authority Profile
+## Tab 8 - Authority Profile
 
 ``` r
 

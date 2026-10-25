@@ -164,6 +164,13 @@ MIT
 - [`mod_authority_server()`](https://r4sub.github.io/r4subui/reference/mod_authority_server.md)
   : Authority Profile Module Server
 
+## Targets Module
+
+- [`mod_targets_ui()`](https://r4sub.github.io/r4subui/reference/mod_targets_ui.md)
+  : Readiness Targets Module UI
+- [`mod_targets_server()`](https://r4sub.github.io/r4subui/reference/mod_targets_server.md)
+  : Readiness Targets Module Server
+
 ## Utilities
 
 - [`render_evidence_table()`](https://r4sub.github.io/r4subui/reference/render_evidence_table.md)
