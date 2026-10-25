@@ -60,6 +60,10 @@ reference:
     contents:
       - mod_authority_ui
       - mod_authority_server
+  - title: "Targets Module"
+    contents:
+      - mod_targets_ui
+      - mod_targets_server
   - title: "Utilities"
     contents:
       - render_evidence_table
