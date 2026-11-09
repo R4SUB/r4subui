@@ -23,7 +23,7 @@ pak::pak(c("R4SUB/r4subcore", "R4SUB/r4subscore", "R4SUB/r4subui"))
 
 See the **[Dashboard Tour
 vignette](https://r4sub.github.io/r4subui/articles/dashboard-tour.html)**
-for static output previews of all eight tabs with reproducible R code.
+for static output previews of all nine tabs with reproducible R code.
 
 ## Quick Start
 
@@ -44,6 +44,7 @@ r4sub_app()
 | Tab | Content |
 |----|----|
 | **Overview** | SCI score, decision band, pillar score cards, evidence summary |
+| **Targets** | Target SCI slider, gap to target, biggest-lever pillar ranking |
 | **Evidence** | Filterable evidence table (domain, severity, result, source) |
 | **Indicators** | Per-indicator scores and SCI explainability (loss contributors) |
 | **Pillars** | Pillar bar chart, contribution table, result distribution |

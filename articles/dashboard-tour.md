@@ -1,6 +1,6 @@
 # Dashboard Tour
 
-`r4subui` provides an eight-tab Shiny dashboard. This vignette shows the
+`r4subui` provides a nine-tab Shiny dashboard. This vignette shows the
 output of each tab using the built-in demo data.
 
 ``` r
@@ -61,7 +61,33 @@ Overview: SCI and pillar scores
 
 ------------------------------------------------------------------------
 
-## Tab 2 - Evidence Explorer
+## Tab 2 - Readiness Targets
+
+Set a target SCI and see the gap to it, plus the pillar that would lift
+the score the most (the biggest lever).
+
+``` r
+
+target  <- 85
+gap     <- sci_gap_to_target(sci, target)
+levers  <- gap$pillars  # pillar, current, weight, max_lift (ordered by max_lift)
+
+par(mar = c(4, 7, 3, 2))
+barplot(rev(setNames(levers$max_lift, levers$pillar)),
+        horiz = TRUE, las = 1, col = rev(cols[levers$pillar]), border = NA,
+        xlab = "SCI points available",
+        main = paste0("Biggest Levers  |  Gap to SCI ", target,
+                      " = ", round(gap$gap, 1)))
+```
+
+![Targets: gap to a target SCI and biggest
+levers](dashboard-tour_files/figure-html/targets-1.png)
+
+Targets: gap to a target SCI and biggest levers
+
+------------------------------------------------------------------------
+
+## Tab 3 - Evidence Explorer
 
 Filterable table of all evidence rows.
 
@@ -103,7 +129,7 @@ Evidence: result distribution by pillar
 
 ------------------------------------------------------------------------
 
-## Tab 3 - Indicator Scores
+## Tab 4 - Indicator Scores
 
 Per-indicator scores and SCI loss contributors.
 
@@ -126,7 +152,7 @@ Top 10 indicators by SCI loss contribution
 
 ------------------------------------------------------------------------
 
-## Tab 4 - Pillar Detail
+## Tab 5 - Pillar Detail
 
 Pillar scores and their contribution to the SCI.
 
@@ -152,7 +178,7 @@ Pillar score and SCI contribution
 
 ------------------------------------------------------------------------
 
-## Tab 5 - Sensitivity Analysis
+## Tab 6 - Sensitivity Analysis
 
 SCI stability under alternative pillar weight scenarios.
 
@@ -183,7 +209,7 @@ SCI sensitivity to weight variations
 
 ------------------------------------------------------------------------
 
-## Tab 6 - Risk Register
+## Tab 7 - Risk Register
 
 ``` r
 
@@ -210,13 +236,13 @@ Risk distribution by severity level
 
 ------------------------------------------------------------------------
 
-## Tab 7 - Traceability
+## Tab 8 - Traceability
 
 ``` r
 
 data(adam_metadata); data(sdtm_metadata); data(trace_mapping)
 ctx      <- r4sub_run_context(study_id = "CDISCPILOT01", environment = "DEV")
-#> ℹ Run context created: "R4S-20261025204640-wl4dieex"
+#> ℹ Run context created: "R4S-20261109180109-wl4dieex"
 tm       <- build_trace_model(adam_metadata, sdtm_metadata, trace_mapping)
 ev_trace <- trace_model_to_evidence(tm, ctx = ctx)
 #> ✔ Evidence table created: 47 rows
@@ -239,7 +265,7 @@ Traceability: result distribution
 
 ------------------------------------------------------------------------
 
-## Tab 8 - Authority Profile
+## Tab 9 - Authority Profile
 
 ``` r
 

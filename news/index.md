@@ -4,6 +4,9 @@
 
 - Metadata and documentation polish for CRAN submission; no user-facing
   changes.
+- Document the Targets tab (added in 0.2.0) in the README tab table and
+  the dashboard tour vignette, so the docs describe all nine dashboard
+  tabs.
 
 ## r4subui 0.2.0
 
