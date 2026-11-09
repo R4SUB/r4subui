@@ -12,7 +12,9 @@ mod_indicators_server(id, evidence_rv)
 \item{evidence_rv}{A reactive returning a validated evidence data.frame.}
 }
 \value{
-Invisible \code{NULL}.
+A reactive returning the \code{indicator_id} the user last chose to drill
+into (a single string), or \code{NULL} before any selection. The app wires this
+to the Evidence tab so the chosen indicator filters the evidence rows.
 }
 \description{
 Indicators Module Server
