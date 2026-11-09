@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-`r4subui` provides an eight-tab Shiny dashboard. This vignette shows the
+`r4subui` provides a nine-tab Shiny dashboard. This vignette shows the
 output of each tab using the built-in demo data.
 
 ```{r load}
@@ -79,7 +79,27 @@ abline(h = 0.85, lty = 2, col = "#555555")
 
 ---
 
-## Tab 2 - Evidence Explorer
+## Tab 2 - Readiness Targets
+
+Set a target SCI and see the gap to it, plus the pillar that would lift the
+score the most (the biggest lever).
+
+```{r targets, fig.cap = "Targets: gap to a target SCI and biggest levers"}
+target  <- 85
+gap     <- sci_gap_to_target(sci, target)
+levers  <- gap$pillars  # pillar, current, weight, max_lift (ordered by max_lift)
+
+par(mar = c(4, 7, 3, 2))
+barplot(rev(setNames(levers$max_lift, levers$pillar)),
+        horiz = TRUE, las = 1, col = rev(cols[levers$pillar]), border = NA,
+        xlab = "SCI points available",
+        main = paste0("Biggest Levers  |  Gap to SCI ", target,
+                      " = ", round(gap$gap, 1)))
+```
+
+---
+
+## Tab 3 - Evidence Explorer
 
 Filterable table of all evidence rows.
 
@@ -108,7 +128,7 @@ legend("topright", legend = results, fill = result_cols,
 
 ---
 
-## Tab 3 - Indicator Scores
+## Tab 4 - Indicator Scores
 
 Per-indicator scores and SCI loss contributors.
 
@@ -125,7 +145,7 @@ barplot(rev(top_loss$loss),
 
 ---
 
-## Tab 4 - Pillar Detail
+## Tab 5 - Pillar Detail
 
 Pillar scores and their contribution to the SCI.
 
@@ -145,7 +165,7 @@ barplot(setNames(contrib$contribution, contrib$pillar),
 
 ---
 
-## Tab 5 - Sensitivity Analysis
+## Tab 6 - Sensitivity Analysis
 
 SCI stability under alternative pillar weight scenarios.
 
@@ -170,7 +190,7 @@ abline(v = c(70, 85), lty = 2, col = "#888888")
 
 ---
 
-## Tab 6 - Risk Register
+## Tab 7 - Risk Register
 
 ```{r risk, fig.cap = "Risk distribution by severity level"}
 data(risk_register_pharma)
@@ -191,7 +211,7 @@ barplot(rd_plot, col = risk_cols[names(rd_plot)], border = NA,
 
 ---
 
-## Tab 7 - Traceability
+## Tab 8 - Traceability
 
 ```{r trace, fig.cap = "Traceability: result distribution"}
 data(adam_metadata); data(sdtm_metadata); data(trace_mapping)
@@ -212,7 +232,7 @@ barplot(rc, col = trace_cols[names(rc)], border = NA,
 
 ---
 
-## Tab 8 - Authority Profile
+## Tab 9 - Authority Profile
 
 ```{r authority, fig.cap = "Pillar weights by regulatory authority"}
 profiles <- list(
