@@ -1,3 +1,10 @@
+# r4subui (development version)
+
+- Add a readiness report download to the Overview tab: a timestamped Markdown
+  snapshot of the current SCI, decision band, per-pillar contributions, and top
+  loss indicators. The report body is produced by the new pure, exported helper
+  `build_readiness_report()`, so it is unit-testable independently of the app.
+
 # r4subui 0.2.1
 
 - Metadata and documentation polish for CRAN submission; no user-facing changes.

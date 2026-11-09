@@ -27,7 +27,18 @@ mod_overview_ui <- function(id) {
     ),
     htmltools::hr(),
     htmltools::h4("Evidence Summary"),
-    shiny::uiOutput(ns("evidence_summary_table"))
+    shiny::uiOutput(ns("evidence_summary_table")),
+    htmltools::hr(),
+    htmltools::h4("Readiness Report"),
+    htmltools::p(
+      "Download a timestamped Markdown snapshot of the current readiness ",
+      "state (SCI, decision band, per-pillar contributions, and top loss ",
+      "indicators).",
+      class = "text-muted"
+    ),
+    shiny::downloadButton(ns("download_report"),
+                          "Download Readiness Report",
+                          class = "btn-primary")
   )
 }
 
@@ -143,6 +154,18 @@ mod_overview_server <- function(id, evidence_rv) {
         max_rows = 100L
       )
     })
+
+    # Readiness report download
+    output$download_report <- shiny::downloadHandler(
+      filename = function() {
+        paste0("r4sub-readiness-", format(Sys.time(), "%Y%m%d-%H%M%S"), ".md")
+      },
+      content = function(file) {
+        ev <- evidence_rv()
+        shiny::req(ev, nrow(ev) > 0L)
+        writeLines(build_readiness_report(ev), con = file)
+      }
+    )
 
     invisible(NULL)
   })
