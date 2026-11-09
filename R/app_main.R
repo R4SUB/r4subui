@@ -35,6 +35,7 @@ r4sub_app <- function(evidence = NULL, theme = r4sub_theme(), ...) {
       width = 280
     ),
     bslib::navset_tab(
+      id = "main_tabs",
       bslib::nav_panel("Overview", mod_overview_ui("overview")),
       bslib::nav_panel("Targets", mod_targets_ui("targets")),
       bslib::nav_panel("Evidence", mod_evidence_ui("evidence")),
@@ -130,13 +131,18 @@ r4sub_app <- function(evidence = NULL, theme = r4sub_theme(), ...) {
     # Wire up modules
     mod_overview_server("overview", ev_store)
     mod_targets_server("targets", ev_store)
-    mod_evidence_server("evidence", ev_store)
-    mod_indicators_server("indicators", ev_store)
+    indicator_drill <- mod_indicators_server("indicators", ev_store)
+    mod_evidence_server("evidence", ev_store, drill_rv = indicator_drill)
     mod_pillar_detail_server("pillars", ev_store)
     mod_sensitivity_server("sensitivity", ev_store)
     mod_risk_server("risk", ev_store)
     mod_trace_server("trace", ev_store)
     mod_authority_server("authority", ev_store)
+
+    # Jump to the Evidence tab when an indicator drill-down is requested.
+    shiny::observeEvent(indicator_drill(), {
+      bslib::nav_select("main_tabs", "Evidence", session = session)
+    }, ignoreNULL = TRUE, ignoreInit = TRUE)
   }
 
   shiny::shinyApp(ui = ui, server = server, ...)
