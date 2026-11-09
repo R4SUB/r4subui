@@ -41,10 +41,10 @@ r4sub_app()
 
 | Tab | Content |
 |---|---|
-| **Overview** | SCI score, decision band, pillar score cards, evidence summary |
+| **Overview** | SCI score, decision band, pillar score cards, evidence summary, readiness report download |
 | **Targets** | Target SCI slider, gap to target, biggest-lever pillar ranking |
 | **Evidence** | Filterable evidence table (domain, severity, result, source) |
-| **Indicators** | Per-indicator scores and SCI explainability (loss contributors) |
+| **Indicators** | Per-indicator scores and SCI explainability (loss contributors), drill-down to filter the Evidence tab |
 | **Pillars** | Pillar bar chart, contribution table, result distribution |
 | **Sensitivity** | Interactive weight sliders and pre-defined weight scenarios |
 | **Risk** | Severity distribution, risk register evidence table |
@@ -81,6 +81,8 @@ shinyApp(ui, server)
 | `r4sub_theme()` | Default bslib theme |
 | `r4sub_value_box()` | Styled metric card |
 | `render_evidence_table()` | HTML evidence table renderer |
+| `build_readiness_report()` | Markdown readiness report snapshot (Overview download) |
+| `filter_evidence_by_indicator()` | Subset evidence to one indicator (Indicators drill-down) |
 | `generate_demo_evidence()` | Demo data generator |
 | `mod_overview_ui/server()` | Overview tab module |
 | `mod_evidence_ui/server()` | Evidence explorer module |
