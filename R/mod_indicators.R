@@ -14,7 +14,23 @@ mod_indicators_ui <- function(id) {
     shiny::uiOutput(ns("indicator_table")),
     htmltools::hr(),
     htmltools::h4("SCI Explainability"),
-    shiny::uiOutput(ns("explain_table"))
+    shiny::uiOutput(ns("explain_table")),
+    htmltools::hr(),
+    htmltools::h4("Drill Down to Evidence"),
+    htmltools::p(
+      "Pick a contributing indicator and open its rows in the Evidence tab.",
+      class = "text-muted small"
+    ),
+    bslib::layout_columns(
+      col_widths = c(8, 4),
+      shiny::selectInput(ns("drill_indicator"), "Indicator",
+                         choices = c("None" = ""), selected = ""),
+      htmltools::div(
+        class = "d-flex align-items-end h-100",
+        shiny::actionButton(ns("drill_btn"), "View Evidence",
+                            class = "btn-primary w-100")
+      )
+    )
   )
 }
 
@@ -23,7 +39,9 @@ mod_indicators_ui <- function(id) {
 #'
 #' @param id Module namespace ID.
 #' @param evidence_rv A reactive returning a validated evidence data.frame.
-#' @return Invisible `NULL`.
+#' @return A reactive returning the `indicator_id` the user last chose to drill
+#'   into (a single string), or `NULL` before any selection. The app wires this
+#'   to the Evidence tab so the chosen indicator filters the evidence rows.
 #'
 #' @export
 mod_indicators_server <- function(id, evidence_rv) {
@@ -63,6 +81,30 @@ mod_indicators_server <- function(id, evidence_rv) {
       )
     })
 
-    invisible(NULL)
+    # Keep the drill-down picker in sync with the contributing indicators.
+    shiny::observe({
+      ev <- evidence_rv()
+      shiny::req(ev, nrow(ev) > 0L)
+
+      expl <- r4subscore::sci_explain(ev)
+      contrib <- expl$indicator_contributions
+      ids <- if (is.data.frame(contrib) && nrow(contrib) > 0L) {
+        sort(unique(contrib$indicator_id))
+      } else {
+        character(0)
+      }
+      shiny::updateSelectInput(
+        session, "drill_indicator",
+        choices = c(c("None" = ""), ids)
+      )
+    })
+
+    # Expose the indicator the user asked to drill into.
+    drill_selection <- shiny::eventReactive(input$drill_btn, {
+      sel <- input$drill_indicator
+      if (is.null(sel) || !nzchar(sel)) NULL else sel
+    })
+
+    drill_selection
   })
 }
