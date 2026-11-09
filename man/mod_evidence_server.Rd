@@ -4,12 +4,18 @@
 \alias{mod_evidence_server}
 \title{Evidence Explorer Module Server}
 \usage{
-mod_evidence_server(id, evidence_rv)
+mod_evidence_server(id, evidence_rv, drill_rv = shiny::reactive(NULL))
 }
 \arguments{
 \item{id}{Module namespace ID.}
 
 \item{evidence_rv}{A reactive returning a validated evidence data.frame.}
+
+\item{drill_rv}{An optional reactive returning an \code{indicator_id} to drill
+into (as produced by \code{\link[=mod_indicators_server]{mod_indicators_server()}}), or \code{NULL} for no
+drill-down. When set, the evidence table is narrowed to that indicator via
+\code{\link[=filter_evidence_by_indicator]{filter_evidence_by_indicator()}}. Defaults to a reactive that always
+returns \code{NULL}.}
 }
 \value{
 Invisible \code{NULL}.

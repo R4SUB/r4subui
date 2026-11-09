@@ -1,5 +1,9 @@
 # r4subui (development version)
 
+- Add an indicator-to-evidence drill-down: pick a contributing indicator in the
+  Indicators tab and open its rows in the Evidence tab. The filtering is done by
+  the new pure, exported helper `filter_evidence_by_indicator()`, so it is
+  unit-testable independently of the app.
 - Add a readiness report download to the Overview tab: a timestamped Markdown
   snapshot of the current SCI, decision band, per-pillar contributions, and top
   loss indicators. The report body is produced by the new pure, exported helper
