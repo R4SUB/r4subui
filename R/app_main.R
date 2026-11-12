@@ -44,7 +44,8 @@ r4sub_app <- function(evidence = NULL, theme = r4sub_theme(), ...) {
       bslib::nav_panel("Sensitivity", mod_sensitivity_ui("sensitivity")),
       bslib::nav_panel("Risk", mod_risk_ui("risk")),
       bslib::nav_panel("Traceability", mod_trace_ui("trace")),
-      bslib::nav_panel("Authority", mod_authority_ui("authority"))
+      bslib::nav_panel("Authority", mod_authority_ui("authority")),
+      bslib::nav_panel("Compare", mod_compare_ui("compare"))
     )
   )
 
@@ -138,6 +139,7 @@ r4sub_app <- function(evidence = NULL, theme = r4sub_theme(), ...) {
     mod_risk_server("risk", ev_store)
     mod_trace_server("trace", ev_store)
     mod_authority_server("authority", ev_store)
+    mod_compare_server("compare", ev_store)
 
     # Jump to the Evidence tab when an indicator drill-down is requested.
     shiny::observeEvent(indicator_drill(), {
