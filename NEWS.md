@@ -1,5 +1,12 @@
 # r4subui (development version)
 
+- Add a Compare tab that diffs the current evidence against an uploaded
+  baseline snapshot: it shows the SCI and decision-band move, the per-pillar
+  score deltas, and how many indicators improved or regressed. The comparison
+  is produced by the new pure, exported helper `compare_readiness()`, which only
+  surfaces values the engine packages already compute (`compute_pillar_scores()`,
+  `compute_sci()`, `evidence_diff()`, and `evidence_diff_summary()`), so it is
+  unit-testable independently of the app.
 - Add an indicator-to-evidence drill-down: pick a contributing indicator in the
   Indicators tab and open its rows in the Evidence tab. The filtering is done by
   the new pure, exported helper `filter_evidence_by_indicator()`, so it is

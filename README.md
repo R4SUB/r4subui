@@ -22,7 +22,7 @@ pak::pak(c("R4SUB/r4subcore", "R4SUB/r4subscore", "R4SUB/r4subui"))
 
 ## Dashboard Tour
 
-See the **[Dashboard Tour vignette](https://r4sub.github.io/r4subui/articles/dashboard-tour.html)** for static output previews of all nine tabs with reproducible R code.
+See the **[Dashboard Tour vignette](https://r4sub.github.io/r4subui/articles/dashboard-tour.html)** for static output previews of all ten tabs with reproducible R code.
 
 ## Quick Start
 
@@ -50,6 +50,7 @@ r4sub_app()
 | **Risk** | Severity distribution, risk register evidence table |
 | **Traceability** | Trace coverage summary, indicator scores, result distribution |
 | **Authority** | Regulatory profile selector, pillar weights, requirement coverage |
+| **Compare** | SCI, band, and per-pillar change vs an uploaded baseline snapshot, plus improved/regressed indicator counts |
 
 ## Using Modules in Custom Apps
 
@@ -83,6 +84,7 @@ shinyApp(ui, server)
 | `render_evidence_table()` | HTML evidence table renderer |
 | `build_readiness_report()` | Markdown readiness report snapshot (Overview download) |
 | `filter_evidence_by_indicator()` | Subset evidence to one indicator (Indicators drill-down) |
+| `compare_readiness()` | Compare two evidence snapshots: SCI, band, pillar, and diff deltas (Compare tab) |
 | `generate_demo_evidence()` | Demo data generator |
 | `mod_overview_ui/server()` | Overview tab module |
 | `mod_evidence_ui/server()` | Evidence explorer module |
@@ -92,6 +94,7 @@ shinyApp(ui, server)
 | `mod_risk_ui/server()` | Risk register module |
 | `mod_trace_ui/server()` | Traceability coverage module |
 | `mod_authority_ui/server()` | Authority profile module |
+| `mod_compare_ui/server()` | Snapshot comparison module |
 
 ## Maintained by
 

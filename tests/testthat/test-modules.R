@@ -44,6 +44,11 @@ test_that("mod_authority_ui returns a shiny tag", {
   expect_true(inherits(ui, "shiny.tag.list") || inherits(ui, "shiny.tag"))
 })
 
+test_that("mod_compare_ui returns a shiny tag", {
+  ui <- mod_compare_ui("test")
+  expect_true(inherits(ui, "shiny.tag.list") || inherits(ui, "shiny.tag"))
+})
+
 test_that("r4sub_app returns a shiny.appobj", {
   skip_if_not_installed("r4subcore")
   skip_if_not_installed("r4subscore")

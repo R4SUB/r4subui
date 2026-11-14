@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-`r4subui` provides a nine-tab Shiny dashboard. This vignette shows the
+`r4subui` provides a ten-tab Shiny dashboard. This vignette shows the
 output of each tab using the built-in demo data.
 
 ```{r load}
@@ -256,6 +256,30 @@ legend("topright", legend = pillars, fill = cols[pillars],
 ```{r reset, include = FALSE}
 # Restore the graphics parameters saved at the start of the tour.
 par(oldpar)
+```
+
+---
+
+## Tab 10 - Compare
+
+Diffs the current evidence against a baseline snapshot. `compare_readiness()`
+reuses the engine's own scoring and evidence-diff functions, so the Compare tab
+only reports values the ecosystem already computes.
+
+```{r compare}
+before <- generate_demo_evidence(60, seed = 1)
+after  <- generate_demo_evidence(60, seed = 2)
+
+cmp <- compare_readiness(before, after)
+
+# Headline SCI and decision-band move.
+c(before = cmp$sci$before, after = cmp$sci$after, delta = cmp$sci$delta)
+
+# Per-pillar score change (largest movers first).
+cmp$pillars
+
+# How many indicators improved or regressed.
+cmp$diff_summary[c("n_improved", "n_regressed", "net_delta")]
 ```
 
 ---
