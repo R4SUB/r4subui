@@ -56,6 +56,8 @@ reference:
       - mod_risk_server
       - mod_trace_ui
       - mod_trace_server
+      - mod_fmea_ui
+      - mod_fmea_server
   - title: "Authority Module"
     contents:
       - mod_authority_ui
@@ -68,6 +70,15 @@ reference:
     contents:
       - render_evidence_table
       - generate_demo_evidence
+      - filter_evidence_by_indicator
+      - build_readiness_report
+      - compare_readiness
+      - fmea_register_view
+      - fmea_pareto_summary
+  - title: "Compare Module"
+    contents:
+      - mod_compare_ui
+      - mod_compare_server
 
 footer:
   structure:
