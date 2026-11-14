@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-`r4subui` provides a ten-tab Shiny dashboard. This vignette shows the
+`r4subui` provides an eleven-tab Shiny dashboard. This vignette shows the
 output of each tab using the built-in demo data.
 
 ```{r load}
@@ -211,7 +211,28 @@ barplot(rd_plot, col = risk_cols[names(rd_plot)], border = NA,
 
 ---
 
-## Tab 8 - Traceability
+## Tab 8 - FMEA (Risk Pareto)
+
+```{r fmea, fig.cap = "FMEA: Pareto of risk priority numbers"}
+pareto <- risk_pareto(rr)
+
+par(mar = c(4, 5, 3, 5))
+bp <- barplot(pareto$rpn, names.arg = pareto$rank, border = NA,
+              col = ifelse(pareto$vital_few, "#2C6DB5", "#AEB6BF"),
+              ylab = "RPN", xlab = "Risk (ranked by RPN)", las = 1,
+              ylim = c(0, max(pareto$rpn) * 1.1),
+              main = paste0("Risk Pareto  |  vital few = ",
+                            attr(pareto, "n_vital_few")))
+lines(bp, pareto$cum_share * max(pareto$rpn) * 1.1, type = "o",
+      pch = 16, col = "#E74C3C", lwd = 2)
+```
+
+The register, RPN, and Pareto shares are all produced by `r4subrisk`; the FMEA
+tab only orders and displays them.
+
+---
+
+## Tab 9 - Traceability
 
 ```{r trace, fig.cap = "Traceability: result distribution"}
 data(adam_metadata); data(sdtm_metadata); data(trace_mapping)
@@ -232,7 +253,7 @@ barplot(rc, col = trace_cols[names(rc)], border = NA,
 
 ---
 
-## Tab 9 - Authority Profile
+## Tab 10 - Authority Profile
 
 ```{r authority, fig.cap = "Pillar weights by regulatory authority"}
 profiles <- list(
@@ -260,7 +281,7 @@ par(oldpar)
 
 ---
 
-## Tab 10 - Compare
+## Tab 11 - Compare
 
 Diffs the current evidence against a baseline snapshot. `compare_readiness()`
 reuses the engine's own scoring and evidence-diff functions, so the Compare tab

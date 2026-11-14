@@ -22,7 +22,7 @@ pak::pak(c("R4SUB/r4subcore", "R4SUB/r4subscore", "R4SUB/r4subui"))
 
 ## Dashboard Tour
 
-See the **[Dashboard Tour vignette](https://r4sub.github.io/r4subui/articles/dashboard-tour.html)** for static output previews of all ten tabs with reproducible R code.
+See the **[Dashboard Tour vignette](https://r4sub.github.io/r4subui/articles/dashboard-tour.html)** for static output previews of all eleven tabs with reproducible R code.
 
 ## Quick Start
 
@@ -48,6 +48,7 @@ r4sub_app()
 | **Pillars** | Pillar bar chart, contribution table, result distribution |
 | **Sensitivity** | Interactive weight sliders and pre-defined weight scenarios |
 | **Risk** | Severity distribution, risk register evidence table |
+| **FMEA** | r4subrisk risk register sorted by RPN, with a Pareto chart and the "vital few" risks |
 | **Traceability** | Trace coverage summary, indicator scores, result distribution |
 | **Authority** | Regulatory profile selector, pillar weights, requirement coverage |
 | **Compare** | SCI, band, and per-pillar change vs an uploaded baseline snapshot, plus improved/regressed indicator counts |
@@ -85,6 +86,8 @@ shinyApp(ui, server)
 | `build_readiness_report()` | Markdown readiness report snapshot (Overview download) |
 | `filter_evidence_by_indicator()` | Subset evidence to one indicator (Indicators drill-down) |
 | `compare_readiness()` | Compare two evidence snapshots: SCI, band, pillar, and diff deltas (Compare tab) |
+| `fmea_register_view()` | Order an r4subrisk register by RPN for display (FMEA tab) |
+| `fmea_pareto_summary()` | Read the headline figures from an r4subrisk Pareto analysis (FMEA tab) |
 | `generate_demo_evidence()` | Demo data generator |
 | `mod_overview_ui/server()` | Overview tab module |
 | `mod_evidence_ui/server()` | Evidence explorer module |
@@ -92,6 +95,7 @@ shinyApp(ui, server)
 | `mod_pillar_detail_ui/server()` | Pillar detail module |
 | `mod_sensitivity_ui/server()` | Sensitivity analysis module |
 | `mod_risk_ui/server()` | Risk register module |
+| `mod_fmea_ui/server()` | FMEA register and Pareto module |
 | `mod_trace_ui/server()` | Traceability coverage module |
 | `mod_authority_ui/server()` | Authority profile module |
 | `mod_compare_ui/server()` | Snapshot comparison module |
