@@ -1,5 +1,14 @@
 # r4subui (development version)
 
+- Add an FMEA tab that renders the 'r4subrisk' risk register and its Pareto
+  analysis for the loaded evidence: a register table sorted by Risk Priority
+  Number (RPN), summary boxes for the total RPN and the "vital few" risks, and a
+  Pareto chart of RPN with the cumulative-share line. The register, RPN, and
+  Pareto are all computed by 'r4subrisk' (`evidence_to_risks()`,
+  `create_risk_register()`, and `risk_pareto()`); the tab only displays them.
+  The display arrangement is factored into two pure, exported helpers,
+  `fmea_register_view()` and `fmea_pareto_summary()`, so it is unit-testable
+  independently of the app.
 - Add a Compare tab that diffs the current evidence against an uploaded
   baseline snapshot: it shows the SCI and decision-band move, the per-pillar
   score deltas, and how many indicators improved or regressed. The comparison
