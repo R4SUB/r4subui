@@ -45,6 +45,10 @@
   : Traceability Module UI
 - [`mod_trace_server()`](https://r4sub.github.io/r4subui/reference/mod_trace_server.md)
   : Traceability Module Server
+- [`mod_fmea_ui()`](https://r4sub.github.io/r4subui/reference/mod_fmea_ui.md)
+  : FMEA Module UI
+- [`mod_fmea_server()`](https://r4sub.github.io/r4subui/reference/mod_fmea_server.md)
+  : FMEA Module Server
 
 ## Authority Module
 
@@ -66,3 +70,20 @@
   : Render an Evidence Table as HTML
 - [`generate_demo_evidence()`](https://r4sub.github.io/r4subui/reference/generate_demo_evidence.md)
   : Generate Demo Evidence Data
+- [`filter_evidence_by_indicator()`](https://r4sub.github.io/r4subui/reference/filter_evidence_by_indicator.md)
+  : Filter Evidence Rows to a Single Indicator
+- [`build_readiness_report()`](https://r4sub.github.io/r4subui/reference/build_readiness_report.md)
+  : Build a Readiness Report Snapshot
+- [`compare_readiness()`](https://r4sub.github.io/r4subui/reference/compare_readiness.md)
+  : Compare Submission Readiness Between Two Evidence Snapshots
+- [`fmea_register_view()`](https://r4sub.github.io/r4subui/reference/fmea_register_view.md)
+  : Arrange an FMEA Risk Register for Display
+- [`fmea_pareto_summary()`](https://r4sub.github.io/r4subui/reference/fmea_pareto_summary.md)
+  : Summarise an FMEA Pareto Analysis
+
+## Compare Module
+
+- [`mod_compare_ui()`](https://r4sub.github.io/r4subui/reference/mod_compare_ui.md)
+  : Compare Module UI
+- [`mod_compare_server()`](https://r4sub.github.io/r4subui/reference/mod_compare_server.md)
+  : Compare Module Server

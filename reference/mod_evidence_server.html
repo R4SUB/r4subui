@@ -43,7 +43,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mod_evidence_server</span><span class="op">(</span><span class="va">id</span>, <span class="va">evidence_rv</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mod_evidence_server</span><span class="op">(</span><span class="va">id</span>, <span class="va">evidence_rv</span>, drill_rv <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">reactive</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -56,6 +56,14 @@
 
 <dt id="arg-evidence-rv">evidence_rv<a class="anchor" aria-label="anchor" href="#arg-evidence-rv"></a></dt>
 <dd><p>A reactive returning a validated evidence data.frame.</p></dd>
+
+
+<dt id="arg-drill-rv">drill_rv<a class="anchor" aria-label="anchor" href="#arg-drill-rv"></a></dt>
+<dd><p>An optional reactive returning an <code>indicator_id</code> to drill
+into (as produced by <code><a href="mod_indicators_server.html">mod_indicators_server()</a></code>), or <code>NULL</code> for no
+drill-down. When set, the evidence table is narrowed to that indicator via
+<code><a href="filter_evidence_by_indicator.html">filter_evidence_by_indicator()</a></code>. Defaults to a reactive that always
+returns <code>NULL</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">

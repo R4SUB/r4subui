@@ -1,7 +1,7 @@
 # Dashboard Tour
 
-`r4subui` provides a nine-tab Shiny dashboard. This vignette shows the
-output of each tab using the built-in demo data.
+`r4subui` provides an eleven-tab Shiny dashboard. This vignette shows
+the output of each tab using the built-in demo data.
 
 ``` r
 
@@ -236,13 +236,40 @@ Risk distribution by severity level
 
 ------------------------------------------------------------------------
 
-## Tab 8 - Traceability
+## Tab 8 - FMEA (Risk Pareto)
+
+``` r
+
+pareto <- risk_pareto(rr)
+
+par(mar = c(4, 5, 3, 5))
+bp <- barplot(pareto$rpn, names.arg = pareto$rank, border = NA,
+              col = ifelse(pareto$vital_few, "#2C6DB5", "#AEB6BF"),
+              ylab = "RPN", xlab = "Risk (ranked by RPN)", las = 1,
+              ylim = c(0, max(pareto$rpn) * 1.1),
+              main = paste0("Risk Pareto  |  vital few = ",
+                            attr(pareto, "n_vital_few")))
+lines(bp, pareto$cum_share * max(pareto$rpn) * 1.1, type = "o",
+      pch = 16, col = "#E74C3C", lwd = 2)
+```
+
+![FMEA: Pareto of risk priority
+numbers](dashboard-tour_files/figure-html/fmea-1.png)
+
+FMEA: Pareto of risk priority numbers
+
+The register, RPN, and Pareto shares are all produced by `r4subrisk`;
+the FMEA tab only orders and displays them.
+
+------------------------------------------------------------------------
+
+## Tab 9 - Traceability
 
 ``` r
 
 data(adam_metadata); data(sdtm_metadata); data(trace_mapping)
 ctx      <- r4sub_run_context(study_id = "CDISCPILOT01", environment = "DEV")
-#> ℹ Run context created: "R4S-20261109180109-wl4dieex"
+#> ℹ Run context created: "R4S-20261115073107-wl4dieex"
 tm       <- build_trace_model(adam_metadata, sdtm_metadata, trace_mapping)
 ev_trace <- trace_model_to_evidence(tm, ctx = ctx)
 #> ✔ Evidence table created: 47 rows
@@ -265,7 +292,7 @@ Traceability: result distribution
 
 ------------------------------------------------------------------------
 
-## Tab 9 - Authority Profile
+## Tab 10 - Authority Profile
 
 ``` r
 
@@ -291,6 +318,45 @@ legend("topright", legend = pillars, fill = cols[pillars],
 authority](dashboard-tour_files/figure-html/authority-1.png)
 
 Pillar weights by regulatory authority
+
+------------------------------------------------------------------------
+
+## Tab 11 - Compare
+
+Diffs the current evidence against a baseline snapshot.
+[`compare_readiness()`](https://r4sub.github.io/r4subui/reference/compare_readiness.md)
+reuses the engine’s own scoring and evidence-diff functions, so the
+Compare tab only reports values the ecosystem already computes.
+
+``` r
+
+before <- generate_demo_evidence(60, seed = 1)
+#> ℹ Run context created: "R4S-20261115073107-da7wnr6u"
+#> ✔ Evidence table created: 60 rows
+after  <- generate_demo_evidence(60, seed = 2)
+#> ℹ Run context created: "R4S-20261115073107-uoff5hq2"
+#> ✔ Evidence table created: 60 rows
+
+cmp <- compare_readiness(before, after)
+
+# Headline SCI and decision-band move.
+c(before = cmp$sci$before, after = cmp$sci$after, delta = cmp$sci$delta)
+#> before  after  delta 
+#>   44.9   32.6  -12.3
+
+# Per-pillar score change (largest movers first).
+cmp$pillars
+#>      pillar score_before score_after       delta weight
+#> 1   quality    0.4916667   0.2800000 -0.21166667   0.35
+#> 2 usability    0.5173611   0.3458333 -0.17152778   0.15
+#> 3     trace    0.4562500   0.3854167 -0.07083333   0.25
+#> 4      risk    0.3395833   0.3174603 -0.02212302   0.25
+
+# How many indicators improved or regressed.
+cmp$diff_summary[c("n_improved", "n_regressed", "net_delta")]
+#>  n_improved n_regressed   net_delta 
+#>      24.000      39.000      -4.125
+```
 
 ------------------------------------------------------------------------
 

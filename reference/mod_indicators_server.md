@@ -20,4 +20,7 @@ mod_indicators_server(id, evidence_rv)
 
 ## Value
 
-Invisible `NULL`.
+A reactive returning the `indicator_id` the user last chose to drill
+into (a single string), or `NULL` before any selection. The app wires
+this to the Evidence tab so the chosen indicator filters the evidence
+rows.

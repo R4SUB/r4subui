@@ -71,7 +71,7 @@
 <div class="section level2">
 <h2 id="dashboard-tour">Dashboard Tour<a class="anchor" aria-label="anchor" href="#dashboard-tour"></a>
 </h2>
-<p>See the <strong><a href="https://r4sub.github.io/r4subui/articles/dashboard-tour.html">Dashboard Tour vignette</a></strong> for static output previews of all nine tabs with reproducible R code.</p>
+<p>See the <strong><a href="https://r4sub.github.io/r4subui/articles/dashboard-tour.html">Dashboard Tour vignette</a></strong> for static output previews of all eleven tabs with reproducible R code.</p>
 </div>
 <div class="section level2">
 <h2 id="quick-start">Quick Start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
@@ -101,7 +101,7 @@
 <tbody>
 <tr>
 <td><strong>Overview</strong></td>
-<td>SCI score, decision band, pillar score cards, evidence summary</td>
+<td>SCI score, decision band, pillar score cards, evidence summary, readiness report download</td>
 </tr>
 <tr>
 <td><strong>Targets</strong></td>
@@ -113,7 +113,7 @@
 </tr>
 <tr>
 <td><strong>Indicators</strong></td>
-<td>Per-indicator scores and SCI explainability (loss contributors)</td>
+<td>Per-indicator scores and SCI explainability (loss contributors), drill-down to filter the Evidence tab</td>
 </tr>
 <tr>
 <td><strong>Pillars</strong></td>
@@ -128,12 +128,20 @@
 <td>Severity distribution, risk register evidence table</td>
 </tr>
 <tr>
+<td><strong>FMEA</strong></td>
+<td>r4subrisk risk register sorted by RPN, with a Pareto chart and the “vital few” risks</td>
+</tr>
+<tr>
 <td><strong>Traceability</strong></td>
 <td>Trace coverage summary, indicator scores, result distribution</td>
 </tr>
 <tr>
 <td><strong>Authority</strong></td>
 <td>Regulatory profile selector, pillar weights, requirement coverage</td>
+</tr>
+<tr>
+<td><strong>Compare</strong></td>
+<td>SCI, band, and per-pillar change vs an uploaded baseline snapshot, plus improved/regressed indicator counts</td>
 </tr>
 </tbody>
 </table>
@@ -163,6 +171,10 @@
 <h2 id="key-functions">Key Functions<a class="anchor" aria-label="anchor" href="#key-functions"></a>
 </h2>
 <table class="table">
+<colgroup>
+<col width="50%">
+<col width="50%">
+</colgroup>
 <thead><tr>
 <th>Function</th>
 <th>Purpose</th>
@@ -183,6 +195,26 @@
 <tr>
 <td><code><a href="reference/render_evidence_table.html">render_evidence_table()</a></code></td>
 <td>HTML evidence table renderer</td>
+</tr>
+<tr>
+<td><code><a href="reference/build_readiness_report.html">build_readiness_report()</a></code></td>
+<td>Markdown readiness report snapshot (Overview download)</td>
+</tr>
+<tr>
+<td><code><a href="reference/filter_evidence_by_indicator.html">filter_evidence_by_indicator()</a></code></td>
+<td>Subset evidence to one indicator (Indicators drill-down)</td>
+</tr>
+<tr>
+<td><code><a href="reference/compare_readiness.html">compare_readiness()</a></code></td>
+<td>Compare two evidence snapshots: SCI, band, pillar, and diff deltas (Compare tab)</td>
+</tr>
+<tr>
+<td><code><a href="reference/fmea_register_view.html">fmea_register_view()</a></code></td>
+<td>Order an r4subrisk register by RPN for display (FMEA tab)</td>
+</tr>
+<tr>
+<td><code><a href="reference/fmea_pareto_summary.html">fmea_pareto_summary()</a></code></td>
+<td>Read the headline figures from an r4subrisk Pareto analysis (FMEA tab)</td>
 </tr>
 <tr>
 <td><code><a href="reference/generate_demo_evidence.html">generate_demo_evidence()</a></code></td>
@@ -213,12 +245,20 @@
 <td>Risk register module</td>
 </tr>
 <tr>
+<td><code>mod_fmea_ui/server()</code></td>
+<td>FMEA register and Pareto module</td>
+</tr>
+<tr>
 <td><code>mod_trace_ui/server()</code></td>
 <td>Traceability coverage module</td>
 </tr>
 <tr>
 <td><code>mod_authority_ui/server()</code></td>
 <td>Authority profile module</td>
+</tr>
+<tr>
+<td><code>mod_compare_ui/server()</code></td>
+<td>Snapshot comparison module</td>
 </tr>
 </tbody>
 </table>
